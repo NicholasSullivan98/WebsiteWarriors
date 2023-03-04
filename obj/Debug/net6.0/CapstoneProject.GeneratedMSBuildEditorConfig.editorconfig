@@ -16,12 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\nicho\source\repos\NicholasSullivan98\WebsiteWarriors
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/Views/Home/AddAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRBcHBvaW50bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/Views/Home/AddReview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRSZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/Views/Home/Reviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXZpZXdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/Views/Shared/Error.cshtml]

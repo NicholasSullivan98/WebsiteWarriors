@@ -2,12 +2,93 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center"> 
+    <div>
+        <table border="1" width="100%">
+            <tr>
+                <td style="padding: 10px;">
+                    <a href="https://www.instagram.com/madebymesewingstudio/">Instagram</a>
+                    <a href="https://www.facebook.com/">Facebook</a>
+                </td>
+                <td style="padding: 10px;">
+                    <h1>Made By Me Sewing Studio</h1>
+                </td>
+                <td style="padding: 10px;">
+                    <button>Login</button>
+                    <button>Sign Up</button>
+                </td>
+            </tr>
+        </table>
+    </div><br>
     
-    <h1>Hello World</h1>
-    
-    <!--
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    -->
+    <div>
+        <table border="1" width="100%">
+            <tr>
+                <td style="padding-top: 10px;">
+                    <h3>Recent Instagram Posts</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;"/>
+                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
+                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
+                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
+                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
+                </td>
+            </tr>
+        </table>
+    </div><br>
+    <div>
+        <table border="1" width="100%" style="">
+            <tr>
+                <td>
+                    <h2 style="text-align: left; padding: 10px;">General Information</h2>
+                    <p style="text-align: left; padding-left: 10px;">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </td>
+            </tr>
+        </table>
+    </div><br>
+    <div>
+        <table border="1" width="100%" style="">
+            <tr>
+                <td>
+                    <h3>Reviews</h3>
+                    <a asp-action="AddReview">Write a Review</a>
+                    <div style="margin: auto; width: 50%;">
+                        <table border="1">
+                            <tr>
+                                <td>
+                                    <h5 style="padding-left: 10px;">Customer Review</h5>
+                                    <p style="text-align: left; padding-left: 10px;">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br>
+                    <div style="margin: auto; width: 50%;">
+                        <table border="1">
+                            <tr>
+                                <td>
+                                    <h5 style="padding-left: 10px;">Customer Review</h5>
+                                    <p style="text-align: left; padding-left: 10px;">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <a asp-action="Reviews">View All Reviews</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a asp-action="AddAppointment">Add Appointment</a>
 </div>

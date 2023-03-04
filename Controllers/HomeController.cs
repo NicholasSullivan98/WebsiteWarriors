@@ -13,6 +13,44 @@ namespace CapstoneProject.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public IActionResult Reviews()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddReview()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddAppointment()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult AddAppointment(AppointmentInfo ai)
+        {
+            if (ModelState.IsValid)
+            {
+                Debug.WriteLine("Name: " + ai.Name);
+                Debug.WriteLine("Phone Number: " + ai.PhoneNumber);
+                Debug.WriteLine("Course Level: " + ai.CourseLevel);
+                Debug.WriteLine("Time: " + ai.Time.ToShortTimeString());
+                Debug.WriteLine("Date: " + ai.Date.ToLongDateString());
+                ViewBag.Response = "Appointment Created!";
+                return View();
+            } 
+            else 
+            {
+                ViewBag.Error = "Failed to Create Appointment";
+                return View();
+            }
+        }
+
         public IActionResult Index()
         {
             return View();
