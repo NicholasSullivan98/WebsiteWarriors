@@ -7,13 +7,19 @@ namespace CapstoneProject.Controllers
     public class HomeController : Controller
     {
         public IAppointmentRepository _appointmentRepository;
+        public IDataSource dataSource = new AppointmentDataSource();
 
-        public HomeController(IAppointmentRepository appointmentRepository)
+		[ActivatorUtilitiesConstructor]
+		public HomeController(IAppointmentRepository appointmentRepository)
         {
             _appointmentRepository = appointmentRepository;
         }
 
-        [HttpGet]
+		public HomeController()
+		{
+		}
+
+		[HttpGet]
         public IActionResult Reviews()
         {
             return View();

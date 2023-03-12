@@ -26,4 +26,21 @@ namespace CapstoneProject.Models
         public DateTime Time { get; set; }
 
     }
+
+
+	public class AppointmentDataSource : IDataSource
+	{
+		public IEnumerable<AppointmentInfo> Appointment =>
+			new AppointmentInfo[]
+			{
+				 new AppointmentInfo{
+				Name = "Andy",
+				PhoneNumber = "6479872984",
+				CourseLevel = "Beginner",
+				//Date = new DateTime(2023, 6, 31),
+				//Time = new DateTime(2023, 6, 31, 5, 10)
+                }
+			};
+
+	}
 }
