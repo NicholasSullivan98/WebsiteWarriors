@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X9QMuYlIehOZ2CUzmtvfV58qT4NAOjgg8lxUvb/USlbJyLafXixSJxHj7Ku3OwYCVpSjYPCPDwxvln2+Xri+Ng==",
+  "dgSpecHash": "wjk67yHyj8KYOUbI4c8yIrZNsHdNsnVdQ7YgNxYCNg79YSJ9WRWFk4HWp7j74H8q0v/U+olk93dQjVC0DaAxOQ==",
   "success": true,
-  "projectFilePath": "D:\\work\\projectV1.2\\Capstone\\CapstoneProject.csproj",
+  "projectFilePath": "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

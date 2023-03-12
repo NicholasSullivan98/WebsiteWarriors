@@ -3516,11 +3516,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\work\\projectV1.2\\Capstone\\CapstoneProject.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj",
       "projectName": "CapstoneProject",
-      "projectPath": "D:\\work\\projectV1.2\\Capstone\\CapstoneProject.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\work\\projectV1.2\\Capstone\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\New folder (2)\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
