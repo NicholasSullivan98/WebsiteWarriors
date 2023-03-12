@@ -6,11 +6,11 @@ namespace CapstoneProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        public IAppointmentRepository _appointmentRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IAppointmentRepository appointmentRepository)
         {
-            _logger = logger;
+            _appointmentRepository = appointmentRepository;
         }
 
         [HttpGet]
@@ -42,6 +42,7 @@ namespace CapstoneProject.Controllers
                 Debug.WriteLine("Time: " + ai.Time.ToShortTimeString());
                 Debug.WriteLine("Date: " + ai.Date.ToLongDateString());
                 ViewBag.Response = "Appointment Created!";
+                _appointmentRepository.AddAppointment(ai);
                 return View();
             } 
             else 

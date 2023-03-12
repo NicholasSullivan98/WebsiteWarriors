@@ -1,7 +1,16 @@
+using CapstoneProject.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddMvc();
+builder.Services.AddDbContext<Capstone_DBContext>(opt =>
+            opt.UseSqlServer(builder.Configuration["CapstoneConnectionString"]));
+//builder.Services.AddDbContext<Capstone_DBContext>(opt => opt.UseSqlServer(builder.Configuration["ConnectionStrings:MBSConnStr"]));
+builder.Services.AddScoped<IAppointmentRepository, CapstoneRepository>();
 
 var app = builder.Build();
 

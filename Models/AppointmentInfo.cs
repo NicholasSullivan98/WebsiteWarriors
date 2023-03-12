@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace CapstoneProject.Models
 {
+    [PrimaryKey(nameof(AppointmentID))]
     public class AppointmentInfo
     {
+        public int AppointmentID { get; set; }
+
         [Required(ErrorMessage = "The Name Field is Required.")]
         public string Name { get; set; } = string.Empty;
         
@@ -14,7 +18,7 @@ namespace CapstoneProject.Models
         
         [Required(ErrorMessage = "The Course Level Field is Required.")]
         public string CourseLevel { get; set; } = string.Empty;
-        
+
         [Required(ErrorMessage = "The Date Field is Required.")]
         public DateTime Date { get; set; }
 
