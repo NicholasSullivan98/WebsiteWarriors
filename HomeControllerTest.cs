@@ -25,8 +25,8 @@ namespace CapstoneProjectTesting
 				new AppointmentInfo{Name="Andy", 
 					PhoneNumber="6479872984",
 					CourseLevel="Beginner",
-					//Date=new DateTime(2023, 6, 31),
-					//Time=new DateTime(2023, 6, 31, 5, 10, 20)
+					Date = new System.DateTime(2023, 3, 21) ,
+				    Time = new System.DateTime(2023, 3, 21,15,30,0)
 				},
 			};
 
@@ -34,7 +34,7 @@ namespace CapstoneProjectTesting
 			mock.SetupGet(m => m.Appointment).Returns(testData);
 			controller.dataSource = mock.Object;
 			//Act
-			var model = (controller.AddAppointment() as ViewResult)?.ViewData.Model as IEnumerable<AppointmentInfo>;
+			var model = (controller.testingAppointmentInfo() as ViewResult)?.ViewData.Model as IEnumerable<AppointmentInfo>;
 
 			//assert
 			Assert.Equal(testData, model, Comparer.Get<AppointmentInfo>((a1, a2) => a1?.Name == a2?.Name &&
