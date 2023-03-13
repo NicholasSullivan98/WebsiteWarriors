@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\projectV1.3\CapstoneProject.csproj" />
     <ProjectReference Include="..\Capstone\CapstoneProject.csproj" />
   </ItemGroup>
 
