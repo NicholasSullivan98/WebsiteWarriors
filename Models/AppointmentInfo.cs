@@ -37,9 +37,9 @@ namespace CapstoneProject.Models
 				Name = "Andy",
 				PhoneNumber = "6479872984",
 				CourseLevel = "Beginner",
-				//Date = new DateTime(2023, 6, 31),
-				//Time = new DateTime(2023, 6, 31, 5, 10)
-                }
+				Date = new System.DateTime(2023, 3, 21) ,
+				Time = new System.DateTime(2023, 3, 21,15,30,0)
+				}
 			};
 
 	}

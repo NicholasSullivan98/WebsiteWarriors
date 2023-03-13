@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj": {}
+    "D:\\work\\projectV1.3\\CapstoneProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj": {
+    "D:\\work\\projectV1.3\\CapstoneProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj",
+        "projectUniqueName": "D:\\work\\projectV1.3\\CapstoneProject.csproj",
         "projectName": "CapstoneProject",
-        "projectPath": "C:\\Users\\User\\source\\repos\\New folder (2)\\CapstoneProject.csproj",
+        "projectPath": "D:\\work\\projectV1.3\\CapstoneProject.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\New folder (2)\\obj\\",
+        "outputPath": "D:\\work\\projectV1.3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
