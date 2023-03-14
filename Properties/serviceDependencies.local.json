@@ -3,9 +3,15 @@
     "secrets1": {
       "type": "secrets.user"
     },
+    "secrets2": {
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/CapstoneProjectvault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultConnectionStringValue"
+    },
     "mssql1": {
-      "secretStore": "LocalSecretsFile",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/capstoneprojectdbserver/databases/CapstoneProject_db",
+      "secretStore": "AzureKeyVault",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/capstoneprojectdbserver/databases/CapstoneProject_db",
       "type": "mssql.azure",
       "connectionId": "CapstoneConnectionString"
     }

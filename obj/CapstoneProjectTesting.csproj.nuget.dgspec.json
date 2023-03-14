@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj": {}
+    "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProjectTesting.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj": {
+    "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProjectTesting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
-        "projectName": "CapstoneProject",
-        "projectPath": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
+        "projectUniqueName": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProjectTesting.csproj",
+        "projectName": "CapstoneProjectTesting",
+        "projectPath": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProjectTesting.csproj",
         "packagesPath": "C:\\Users\\nicho\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\obj\\",
         "projectStyle": "PackageReference",
@@ -32,7 +32,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\Capstone\\CapstoneProject.csproj": {
+                "projectPath": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\Capstone\\CapstoneProject.csproj"
+              },
+              "C:\\Users\\nicho\\Source\\Repos\\projectV1.3\\CapstoneProject.csproj": {
+                "projectPath": "C:\\Users\\nicho\\Source\\Repos\\projectV1.3\\CapstoneProject.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -45,29 +52,29 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[17.3.2, )"
             },
-            "Azure.Identity": {
+            "Moq": {
               "target": "Package",
-              "version": "[1.6.0, )"
+              "version": "[4.18.4, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
+            "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[3.1.2, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "xunit": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[2.4.2, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "xunit.runner.visualstudio": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[2.4.5, )"
             }
           },
           "imports": [
@@ -82,9 +89,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

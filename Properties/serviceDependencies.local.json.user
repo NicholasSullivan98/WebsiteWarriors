@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "secrets2": {
+      "restored": true,
+      "restoreTime": "2023-03-14T15:20:16.6138916Z"
+    },
     "mssql1": {
       "restored": true,
       "restoreTime": "2023-03-12T19:12:08.5119123Z"
@@ -12,6 +16,16 @@
   "parameters": {
     "mssql1.subscriptionId": {
       "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "c1d76504-1bf4-44f2-aaaa-2a4b6148702a"
+    },
+    "secrets2.resourceGroupName": {
+      "Name": "secrets2.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "CapstoneProject2023"
+    },
+    "secrets2.subscriptionId": {
+      "Name": "secrets2.subscriptionId",
       "Type": "subscription",
       "Value": "c1d76504-1bf4-44f2-aaaa-2a4b6148702a"
     },

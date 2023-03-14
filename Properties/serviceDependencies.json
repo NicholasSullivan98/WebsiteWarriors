@@ -3,6 +3,10 @@
     "secrets1": {
       "type": "secrets"
     },
+    "secrets2": {
+      "type": "secrets",
+      "connectionId": "VaultConnectionStringValue"
+    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "CapstoneConnectionString"
