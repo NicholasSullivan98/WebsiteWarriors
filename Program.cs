@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddMvc();
 builder.Services.AddDbContext<Capstone_DBContext>(opt =>
-            opt.UseSqlServer(builder.Configuration["CapstoneDatabaseConnectionString"]));
+            opt.UseSqlServer(builder.Configuration.GetConnectionString("CapstoneDatabaseConnectionString")));
 //builder.Services.AddDbContext<Capstone_DBContext>(opt => opt.UseSqlServer(builder.Configuration["ConnectionStrings:MBSConnStr"]));
 builder.Services.AddScoped<IAppointmentRepository, CapstoneRepository>();
 
