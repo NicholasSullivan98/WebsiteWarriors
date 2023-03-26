@@ -9,37 +9,49 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CapstoneProject
 build_property.RootNamespace = CapstoneProject
-build_property.ProjectDir = C:\Users\nicho\source\repos\NicholasSullivan98\WebsiteWarriors\CapstoneProject\
+build_property.ProjectDir = C:\Users\areeb\source\repos\WebsiteWarriors\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\nicho\source\repos\NicholasSullivan98\WebsiteWarriors\CapstoneProject
+build_property.MSBuildProjectDirectory = C:\Users\areeb\source\repos\WebsiteWarriors
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/Home/Index.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Home/AddAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRBcHBvaW50bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Home/AddReview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRSZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/Home/Privacy.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/Shared/Error.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Home/Reviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXZpZXdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/_ViewImports.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/_ViewStart.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicho/source/repos/NicholasSullivan98/WebsiteWarriors/CapstoneProject/Views/Shared/_Layout.cshtml]
+[C:/Users/areeb/source/repos/WebsiteWarriors/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vfnnynxfui
