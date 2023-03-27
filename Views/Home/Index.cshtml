@@ -13,10 +13,20 @@
                 <td style="padding: 10px;">
                     <h1>Made By Me Sewing Studio</h1>
                 </td>
-                <td style="padding: 10px;">
-                    <button>Login</button>
-                    <button>Sign Up</button>
-                </td>
+                @if (ViewBag.LoggedIn == true)
+                {
+                    <td style="padding: 10px;">
+                        Logged In As: @ViewBag.LoggedInName
+                        <a asp-action="Logout"><button type="button">Logout</button></a>
+                    </td>
+                }
+                else
+                {
+                    <td style="padding: 10px;">
+                        <a asp-action="Login"><button type="button">Login</button></a>
+                        <a asp-action="SignUp"><button type="button">Sign Up</button></a>
+                    </td>
+                }
             </tr>
         </table>
     </div><br>

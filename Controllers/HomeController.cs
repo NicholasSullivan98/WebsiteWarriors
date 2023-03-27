@@ -1,5 +1,7 @@
 ﻿using CapstoneProject.Models;
+using CapstoneProject.Models.Account_Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 
 namespace CapstoneProject.Controllers
@@ -7,17 +9,22 @@ namespace CapstoneProject.Controllers
     public class HomeController : Controller
     {
         public IAppointmentRepository _appointmentRepository;
+        public IAccountRepository _accountRepository;
         public IDataSource dataSource = new AppointmentDataSource();
 
-		[ActivatorUtilitiesConstructor]
-		public HomeController(IAppointmentRepository appointmentRepository)
+        public static bool loggedIn { get; set; } = false;
+        public static string loggedInPassword { get; set; } = string.Empty;
+        public static string loggedInName { get; set; } = string.Empty;
+        public static string loggedInEmail { get; set; } = string.Empty;
+        public static int loggedInID { get; set; } = 0;
+
+
+        [ActivatorUtilitiesConstructor]
+		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository)
         {
             _appointmentRepository = appointmentRepository;
+            _accountRepository = accountRepository;
         }
-
-		public HomeController()
-		{
-		}
 
 		[HttpGet]
         public IActionResult Reviews()
@@ -34,7 +41,14 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult AddAppointment()
         {
-            return View();
+            if (loggedIn == true)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         
         [HttpPost]
@@ -61,17 +75,38 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult ManageAppointments()
         {
-            return View(new ManageAppointPageModel
+            if (loggedIn == true && loggedInName == "Michelle De Melo" && loggedInID == 1)
             {
-                Appointments = _appointmentRepository.GetAllAppointments
-            });
+                return View(new ManageAppointPageModel
+                {
+                    Appointments = _appointmentRepository.GetAllAppointments
+                });
+            }
+            else if(loggedIn == true){
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
         public IActionResult EditAppointment(int id)
         {
-            AppointmentInfo appointment = _appointmentRepository.GetAppointment(id);
-            return View(appointment);
+            if (loggedIn == true && loggedInName == "Michelle De Melo" && loggedInID == 1)
+            {
+                AppointmentInfo appointment = _appointmentRepository.GetAppointment(id);
+                return View(appointment);
+            }
+            else if (loggedIn == true)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpPost]
@@ -103,8 +138,93 @@ namespace CapstoneProject.Controllers
             return RedirectToAction("ManageAppointments");
         }
 
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(AccountInformation ai)
+        {
+            if (ModelState.IsValid)
+            {
+                _accountRepository.AddUser(ai);
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            loggedIn = false;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginInformation li)
+        {
+            if (ModelState.IsValid)
+            {
+                loggedInEmail = " ";
+                loggedInPassword = " ";
+                loggedInID = 0;
+
+                IEnumerable<AccountInformation> loggedInUser = _accountRepository.GetAllAccounts.Where(r => r.Email == li.Email && r.Password == li.Password);
+
+                foreach (AccountInformation account in loggedInUser)
+                {
+                    Debug.WriteLine("Email: " + account.Email);
+                    Debug.WriteLine("Password: " + account.Password);
+                    loggedInEmail = account.Email;
+                    loggedInPassword = account.Password;
+                    loggedInName = account.ParentFirstName + " " + account.ParentLastName;
+                    loggedInID = account.AccountID;
+                }
+
+                if (loggedInEmail != " " && loggedInPassword != " " && loggedInEmail != null && loggedInEmail.IsNullOrEmpty() != true)
+                {
+                    Debug.WriteLine("Made it in if");
+                    loggedIn = true;
+                    ViewBag.LoggedIn = true;
+                    ViewBag.LoggedInName = loggedInName;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Given Email or Password is incorrect";
+                    return View();
+                }
+
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            loggedIn = false;
+            loggedInEmail = string.Empty;
+            loggedInName = string.Empty;
+            loggedInPassword = string.Empty;
+            loggedInID = 0;
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
+            if (loggedIn != false)
+            {
+                ViewBag.LoggedIn = true;
+                ViewBag.LoggedInName = loggedInName;
+            }
             return View();
         }
 

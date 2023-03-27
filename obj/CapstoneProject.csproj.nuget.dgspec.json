@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj": {}
+    "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj": {
+    "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
+        "projectUniqueName": "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
         "projectName": "CapstoneProject",
-        "projectPath": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
+        "projectPath": "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
         "packagesPath": "C:\\Users\\nicho\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nicho\\Source\\Repos\\NicholasSullivan98\\WebsiteWarriors\\obj\\",
+        "outputPath": "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

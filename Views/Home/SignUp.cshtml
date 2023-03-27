@@ -1,7 +1,7 @@
-﻿@model AppointmentInfo
+﻿@model CapstoneProject.Models.Account_Models.AccountInformation
 @{
-    ViewData["Title"] = "Edit Appointment";
     Layout = "_Layout";
+    ViewData["Title"] = "Sign Up";
 }
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
             box-sizing: border-box;
         }
 
-        input[type=text], select, textarea, [type=date], [type=time] {
+        input[type=text], select, textarea, [type=date], [type=time], [type=password] {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -68,7 +68,7 @@
                         <a><img src="/img/Logo_Cropped.jpg" style="width: 300px; height: 125px;" /></a>
                     </td>
                     <td style="padding: 10px;" width="60%" align="left">
-                        <h1>Edit Appointment</h1>
+                        <h1>Create Account</h1>
                     </td>
                 </tr>
             </table>
@@ -78,14 +78,48 @@
                 <tr>
                     <td style="padding: 10px;">
                         <div class="pageContainer">
-                            <form method="post" asp-action="EditAppointment" asp-route-id="@Model.AppointmentID">
+                            <form method="post" asp-action="SignUp">
                                 <div asp-validation-summary="All">
+                                    <!--Parent Name-->
                                     <div class="row">
                                         <div class="col-25">
-                                            <label asp-for="Name">Name</label>
+                                            <label asp-for="ParentFirstName">First Name</label>
                                         </div>
                                         <div class="col-75">
-                                            <input type="text" asp-for="Name" name="Name" value="@Model.Name">
+                                            <input type="text" asp-for="ParentFirstName" name="ParentFirstName" placeholder="Enter your first name..">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label asp-for="ParentLastName">Last Name</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" asp-for="ParentLastName" name="ParentLastName" placeholder="Enter your last name..">
+                                        </div>
+                                    </div>
+                                    <!--Child Name-->
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label asp-for="StudentFirstName">Child First Name</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" asp-for="StudentFirstName" name="StudentFirstName" placeholder="Enter your child's first name..">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label asp-for="StudentLastName">Child Last Name</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" asp-for="StudentLastName" name="StudentLastName" placeholder="Enter your child's last name..">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label asp-for="Email">Email</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" asp-for="Email" name="Email" placeholder="Enter your Email..">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -93,64 +127,44 @@
                                             <label asp-for="PhoneNumber">PhoneNumber</label>
                                         </div>
                                         <div class="col-75">
-                                            <input type="text" asp-for="PhoneNumber" name="phonenumber" value="@Model.PhoneNumber">
+                                            <input type="text" asp-for="PhoneNumber" name="phonenumber" placeholder="Enter your Phone Num..">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-25">
-                                            <label asp-for="CourseLevel">Course Level</label>
+                                            <label asp-for="Password">Password: </label>
                                         </div>
                                         <div class="col-75">
-                                            <select asp-for="CourseLevel">
-                                                <option value="Beginner">Beginner</option>
-                                                <option value="Intermediate">Intermediate</option>
-                                                <option value="Advanced">Advanced</option>
-                                            </select>
+                                            <input type="text" asp-for="Password" type="password" placeholder="Enter your password.." />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-25">
-                                            <label asp-for="Date">Date: </label>
+                                            <label asp-for="PasswordConformation">Re-Enter Password: </label>
                                         </div>
                                         <div class="col-75">
-                                            <input type="text" asp-for="Date" type="date" value="@Model.Date"/>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25"></div>
-                                        <div class="col-75">
-                                            <p style="align-self:center">Current Appointment Date: @Model.Date.ToLongDateString()</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25">
-                                            <label asp-for="Time">Time: </label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input asp-for="Time" type="time" value="@Model.Time"/>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25"></div>
-                                        <div class="col-75">
-                                            <p style="align-self:center">Current Appointment Time: @Model.Time.ToLongTimeString()</p>
+                                            <input type="text" asp-for="PasswordConformation" type="password" placeholder="Re-Enter your password.." />
                                         </div>
                                     </div><br>
                                     <div class="row">
-                                        <input type="submit" value="Save Appointment">
+                                        <input type="submit" value="Create Account">
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <a href="https://www.instagram.com/madebymesewingstudio/">Instagram</a>
+                        <a href="https://www.facebook.com/">Facebook</a>
+                    </td>
+                </tr>
             </table>
         </div>
-        <div style="color: red;">@ViewBag.UpdateError</div>
-        <p>
-            <a asp-action="ManageAppointments">Click here</a> to go back.
-        </p>
     </div>
+    <p>
+        <a asp-action="Index">Click here</a> to go back.
+    </p>
 </body>
 </html>
-

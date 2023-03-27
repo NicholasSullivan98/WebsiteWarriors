@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CapstoneProject.Models.Account_Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CapstoneProject.Models
 {
@@ -7,5 +8,6 @@ namespace CapstoneProject.Models
         public Capstone_DBContext(DbContextOptions<Capstone_DBContext> options) : base(options) { }
 
         public DbSet<AppointmentInfo> Appointments { get; set; }
+        public DbSet<AccountInformation> Accounts { get; set; }
     }
 }

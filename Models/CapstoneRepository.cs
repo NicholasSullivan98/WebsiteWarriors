@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CapstoneProject.Models.Account_Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace CapstoneProject.Models
 {
-    public class CapstoneRepository : IAppointmentRepository
+    public class CapstoneRepository : IAppointmentRepository, IAccountRepository
     {
         private Capstone_DBContext context;
         public CapstoneRepository(Capstone_DBContext ctx)
@@ -11,6 +12,7 @@ namespace CapstoneProject.Models
             context = ctx;
         }
         public IQueryable<AppointmentInfo> GetAllAppointments => context.Appointments.OrderBy(a => a.Time.Hour);
+        public IQueryable<AccountInformation> GetAllAccounts => context.Accounts;
 
         public AppointmentInfo GetAppointment(int id)
         {
@@ -19,8 +21,13 @@ namespace CapstoneProject.Models
 
         public void AddAppointment(AppointmentInfo ai)
         {
-            Debug.WriteLine("Inside CapstoneRepository");
             context.Appointments.Add(ai);
+            context.SaveChanges();
+        }
+
+        public void AddUser(AccountInformation ai)
+        {
+            context.Accounts.Add(ai);
             context.SaveChanges();
         }
 
@@ -39,11 +46,7 @@ namespace CapstoneProject.Models
 
         public void DeleteAppointment(int id)
         {
-
-            Debug.WriteLine("id: "+id);
             var res = context.Appointments.FirstOrDefault(n => n.AppointmentID == id);
-            Debug.WriteLine("res: " + res);
-            Debug.WriteLine("res AppointmentName: " + res.Name);
             context.Appointments.Remove(res);
             context.SaveChanges();
         }
