@@ -10,6 +10,7 @@ namespace CapstoneProject.Controllers
     {
         public IAppointmentRepository _appointmentRepository;
         public IAccountRepository _accountRepository;
+        public IReviewRepository _reviewRepository;
         public IDataSource dataSource = new AppointmentDataSource();
 
         public static bool loggedIn { get; set; } = false;
@@ -20,22 +21,48 @@ namespace CapstoneProject.Controllers
 
 
         [ActivatorUtilitiesConstructor]
-		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository)
+		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository, IReviewRepository reviewRepository)
         {
             _appointmentRepository = appointmentRepository;
             _accountRepository = accountRepository;
+            _reviewRepository = reviewRepository;
         }
 
 		[HttpGet]
         public IActionResult Reviews()
         {
-            return View();
+            return View(new ManageReviewPageModel
+            {
+                Reviews = _reviewRepository.GetAllReviews
+            });
         }
 
         [HttpGet]
         public IActionResult AddReview()
         {
-            return View();
+            ViewBag.LoggedInName = loggedInName;
+            if (loggedIn == true)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddReview(ReviewInformation ri)
+        {
+            if (ModelState.IsValid)
+            {
+                _reviewRepository.AddReview(ri);
+                return RedirectToAction("Reviews");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

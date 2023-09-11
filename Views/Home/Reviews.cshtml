@@ -1,5 +1,49 @@
-﻿@{
+﻿@model CapstoneProject.Models.Account_Models.ManageReviewPageModel
+@{
     ViewData["Title"] = "Reviews";
     Layout = "_Layout";
 }
-<h1>Reviews Coming Soon</h1>
+<div>
+    <div>
+        <table border="1" width="100%">
+            <tr>
+                <td style="padding: 10px;">
+                    <a><img src="/img/Logo_Cropped.jpg" style="width: 300px; height: 125px;" /></a>
+                </td>
+                <td style="padding: 10px;" width="65%" align="left">
+                    <h1>Reviews</h1>
+                </td>
+            </tr>
+        </table>
+    </div><br>
+    <div>
+        <table border="1" width="100%" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align: center;" colspan="6">
+                        Reviews:
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Reviewer Name</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                </tr>
+                @foreach (CapstoneProject.Models.Account_Models.ReviewInformation review in Model.Reviews)
+                {
+                    <tr>
+                        <td>@review.ReviewerName</td>
+                        <td>@review.Review</td>
+                        <td>@review.Rating</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p>
+        <a asp-action="Index">Click here</a> to go back.
+    </p>
+</div>
+

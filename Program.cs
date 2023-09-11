@@ -17,6 +17,7 @@ builder.Services.AddDbContext<Capstone_DBContext>(opt =>
 //builder.Services.AddDbContext<Capstone_DBContext>(opt => opt.UseSqlServer(builder.Configuration["ConnectionStrings:MBSConnStr"]));
 builder.Services.AddScoped<IAppointmentRepository, CapstoneRepository>();
 builder.Services.AddScoped<IAccountRepository, CapstoneRepository>();
+builder.Services.AddScoped<IReviewRepository, CapstoneRepository>();
 
 var app = builder.Build();
 
