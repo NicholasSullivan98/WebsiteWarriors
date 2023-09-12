@@ -252,7 +252,12 @@ namespace CapstoneProject.Controllers
                 ViewBag.LoggedIn = true;
                 ViewBag.LoggedInName = loggedInName;
             }
-            return View();
+
+            return View(new ManageReviewPageModel
+            {
+                Reviews = _reviewRepository.GetAllReviews.Where(r => r.ReviewID <= 3)
+            });
+
         }
 
         public IActionResult Privacy()

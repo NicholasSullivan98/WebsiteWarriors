@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CapstoneProject.Models.Account_Models.ManageReviewPageModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -70,30 +71,25 @@
                 <td>
                     <h3>Reviews</h3>
                     <a asp-action="AddReview">Write a Review</a>
-                    <div style="margin: auto; width: 50%;">
-                        <table border="1">
-                            <tr>
-                                <td>
-                                    <h5 style="padding-left: 10px;">Customer Review</h5>
-                                    <p style="text-align: left; padding-left: 10px;">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.</p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div><br>
-                    <div style="margin: auto; width: 50%;">
-                        <table border="1">
-                            <tr>
-                                <td>
-                                    <h5 style="padding-left: 10px;">Customer Review</h5>
-                                    <p style="text-align: left; padding-left: 10px;">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
+                    <div style="margin: auto; width: 60%; padding: 10px;">
+                        @foreach (CapstoneProject.Models.Account_Models.ReviewInformation review in Model.Reviews)
+                        {
+                            <div style="margin: auto; width: 60%; padding: 10px;">
+                            <table border="1" style="margin: auto;">
+                                <tbody>
+                                    <tr>
+                                        <td>@review.Rating/5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@review.Review</td>
+                                    </tr>
+                                    <tr>
+                                        <td>By @review.ReviewerName</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        }
                     </div>
                     <a asp-action="Reviews">View All Reviews</a>
                 </td>

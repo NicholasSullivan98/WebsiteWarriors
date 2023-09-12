@@ -11,7 +11,15 @@
             box-sizing: border-box;
         }
 
-        input[type=text], select, textarea, [type=date], [type=time], [type=password] {
+        input[type=text], select, [type=date], [type=time], [type=password], [type=number] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        
+        textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -85,22 +93,23 @@
                                             <label asp-for="Review">Review</label>
                                         </div>
                                         <div class="col-75">
-                                            <input type="textarea" asp-for="Review" name="Review" placeholder="Enter your review..">
+                                            <textarea asp-for="Review" name="Review" placeholder="Enter your review.." rows="4" cols="50" maxlength="500"></textarea>
+                                            <!--<input type="textarea" asp-for="Review" name="Review" placeholder="Enter your review..">-->
                                         </div>
-                                    </div>
+                                    </div><br>
+                                    <input hidden type="text" asp-for="ReviewerName" value="@ViewBag.LoggedInName" />
                                     <!--Rating-->
                                     <div class="row">
                                         <div class="col-25">
-                                            <label asp-for="Rating">Rating</label>
+                                            <label asp-for="Rating">Rating (1-5)</label>
                                         </div>
                                         <div class="col-75">
-                                            <input type="number" asp-for="Rating" name="Rating" placeholder="Enter your rating (1-5)..">
+                                            <input type="number" max="5" min="1" asp-for="Rating" name="Rating" placeholder="Enter your rating (1-5)..">
                                         </div>
-                                    </div>
+                                    </div><br>
                                     <div class="row">
                                         <input type="submit" value="Add Review">
                                     </div>
-                                    <input hidden type="text" asp-for="ReviewerName" value="@ViewBag.LoggedInName" />
                                 </div>
                             </form>
                         </div>

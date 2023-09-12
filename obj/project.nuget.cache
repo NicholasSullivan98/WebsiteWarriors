@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0SIntXimsxL+S02XQDp+QoTz1ccZQSQQyNlE4k04rrXB5/RoUiAXWLkSnYjC+PPevwWPJBaRD+SqjWp3kyuLPw==",
+  "dgSpecHash": "U4I4Z+Zkx4SQ6ifb/kWvoID08Y4bRRS5dVnt5OqdD5aVE6CYnwwWO6hEyvTX3QFNu79Gc1CpghjnoTo4Snyq/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,8 @@
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\mstest.testframework\\3.1.1\\mstest.testframework.3.1.1.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\profanity.detector\\0.1.8\\profanity.detector.0.1.8.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
