@@ -81,17 +81,17 @@ namespace ProfanityFilter
         public static bool TestProfanity(string review)
         {
             var filter = new ProfanityFilter();
-            try
+
+            var swearList = filter.DetectAllProfanities(review);
+
+            if (swearList.Count == 0)
             {
-                Assert.IsTrue(filter.IsProfanity(review));
+                return false;
             }
-            catch (Exception ex) 
+            else
             {
-                Debug.WriteLine(ex);
                 return true;
-            }
-            return false;
-            
+            }        
         }
     }
 }
