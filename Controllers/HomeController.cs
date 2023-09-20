@@ -31,6 +31,8 @@ namespace CapstoneProject.Controllers
 		[HttpGet]
         public IActionResult Reviews()
         {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedInID = loggedInID;
             return View(new ManageReviewPageModel
             {
                 Reviews = _reviewRepository.GetAllReviews
@@ -63,6 +65,13 @@ namespace CapstoneProject.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteReview(int id)
+        {
+            _reviewRepository.DeleteReview(id);
+            return RedirectToAction("Reviews");
         }
 
         [HttpGet]

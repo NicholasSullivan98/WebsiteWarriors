@@ -11,6 +11,9 @@ namespace CapstoneProject.Models.Account_Models
 
         public string ReviewerName { get; set;}
 
+        [Required(ErrorMessage = "Please, enter your review title")]
+        public string ReviewTitle { get; set; }
+
         [Required(ErrorMessage = "Please, enter your review")]
         public string Review { get; set;}
         [Required(ErrorMessage = "Please, enter a rating")]

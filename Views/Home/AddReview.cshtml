@@ -87,6 +87,15 @@
                         <div class="pageContainer">
                             <form method="post" asp-action="AddReview">
                                 <div asp-validation-summary="All">
+                                    <!--Rating-->
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label asp-for="ReviewTitle">Review Title</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" asp-for="ReviewTitle" name="ReviewTitle" placeholder="Enter your review title">
+                                        </div>
+                                    </div><br>
                                     <!--Review-->
                                     <div class="row">
                                         <div class="col-25">

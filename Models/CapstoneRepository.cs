@@ -41,7 +41,8 @@ namespace CapstoneProject.Models
         {
             Debug.WriteLine(ri.Review);
             bool result = test.TestProfanity(ri.Review);
-            if (result == false)
+            bool titleResult = test.TestProfanity(ri.ReviewTitle);
+            if (result == false && titleResult == false)
             {
                 context.Reviews.Add(ri);
                 context.SaveChanges();
@@ -50,6 +51,13 @@ namespace CapstoneProject.Models
             {
                 Debug.WriteLine("Contained Profanity");
             }
+        }
+
+        public void DeleteReview(int id)
+        {
+            var res = context.Reviews.FirstOrDefault(n => n.ReviewID == id);
+            context.Reviews.Remove(res);
+            context.SaveChanges();
         }
 
         public AppointmentInfo UpdateAppointment(AppointmentInfo ai, int id)

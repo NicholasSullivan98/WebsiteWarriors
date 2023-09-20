@@ -5,5 +5,6 @@
         IQueryable<ReviewInformation> GetAllReviews { get; }
         ReviewInformation Get3Reviews();
         public void AddReview(ReviewInformation review);
+        public void DeleteReview(int id);
     }
 }
