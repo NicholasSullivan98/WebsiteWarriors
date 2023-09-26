@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "U4I4Z+Zkx4SQ6ifb/kWvoID08Y4bRRS5dVnt5OqdD5aVE6CYnwwWO6hEyvTX3QFNu79Gc1CpghjnoTo4Snyq/g==",
+  "dgSpecHash": "Fpy5p1Mb9l3XIvHI7XQA+OiMnNsRvj22xgwDaasKh7uL4t6N+zrkEPTkeb64T6qAyEM5qgTbMLaN6aATo9H3hA==",
   "success": true,
   "projectFilePath": "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\nicho\\.nuget\\packages\\azure.extensions.aspnetcore.configuration.secrets\\1.0.0\\azure.extensions.aspnetcore.configuration.secrets.1.0.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\azure.security.keyvault.secrets\\4.0.1\\azure.security.keyvault.secrets.4.0.1.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

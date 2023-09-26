@@ -22,6 +22,7 @@ namespace CapstoneProject.Models.Account_Models
 
         [Required(ErrorMessage = "Please, enter your email")]
         [EmailAddress]
+        
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please, enter your phone number")]

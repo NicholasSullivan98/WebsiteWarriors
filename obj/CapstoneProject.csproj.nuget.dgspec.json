@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[1.6.0, )"
             },
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "MSTest.TestFramework": {
               "target": "Package",
               "version": "[3.1.1, )"

@@ -204,25 +204,29 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult Login(LoginInformation li)
         {
+
             if (ModelState.IsValid)
             {
                 loggedInEmail = " ";
                 loggedInPassword = " ";
                 loggedInID = 0;
+                bool verifyPassword = false;
 
-                IEnumerable<AccountInformation> loggedInUser = _accountRepository.GetAllAccounts.Where(r => r.Email == li.Email && r.Password == li.Password);
+                IEnumerable<AccountInformation> loggedInUser = _accountRepository.GetAllAccounts.Where(r => r.Email == li.Email);
 
                 foreach (AccountInformation account in loggedInUser)
                 {
                     Debug.WriteLine("Email: " + account.Email);
                     Debug.WriteLine("Password: " + account.Password);
+                    Debug.WriteLine("ID: " + account.AccountID);
+                    verifyPassword = BCrypt.Net.BCrypt.Verify(li.Password, account.Password);
                     loggedInEmail = account.Email;
-                    loggedInPassword = account.Password;
                     loggedInName = account.ParentFirstName + " " + account.ParentLastName;
                     loggedInID = account.AccountID;
+                    Debug.WriteLine("ID in loggedInId: " + loggedInID);
                 }
 
-                if (loggedInEmail != " " && loggedInPassword != " " && loggedInEmail != null && loggedInEmail.IsNullOrEmpty() != true)
+                if (loggedInEmail.IsNullOrEmpty() != true && verifyPassword == true)
                 {
                     Debug.WriteLine("Made it in if");
                     loggedIn = true;

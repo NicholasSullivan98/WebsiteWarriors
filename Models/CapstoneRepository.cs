@@ -1,7 +1,9 @@
 ﻿using CapstoneProject.Models.Account_Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Identity;
 using ProfanityFilter;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace CapstoneProject.Models
 {
@@ -31,8 +33,18 @@ namespace CapstoneProject.Models
             context.SaveChanges();
         }
 
+        private readonly RandomNumberGenerator _rng;
+
         public void AddUser(AccountInformation ai)
         {
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(ai.Password);
+
+            Debug.WriteLine(ai.Password);
+            Debug.WriteLine(passwordHash);
+
+            ai.Password = passwordHash;
+            ai.PasswordConformation = passwordHash;
+
             context.Accounts.Add(ai);
             context.SaveChanges();
         }
@@ -103,3 +115,5 @@ namespace ProfanityFilter
         }
     }
 }
+
+
