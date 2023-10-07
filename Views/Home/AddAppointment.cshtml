@@ -85,12 +85,13 @@ input[type=submit]:hover {
                             <div asp-validation-summary="All">
                                 <div class="row">
                                     <div class="col-25">
-                                        <label asp-for="Name">Name</label>
+                                        <label asp-for="Name">Child Name</label>
                                     </div>
                                     <div class="col-75">
-                                        <input type="text" asp-for="Name" name="Name" placeholder="Enter your name..">
+                                        <input type="text" asp-for="Name" name="Name" placeholder="Enter your childs name..">
                                     </div>
                                 </div>
+                                <!--
                                 <div class="row">
                                     <div class="col-25">
                                         <label asp-for="PhoneNumber">PhoneNumber</label>
@@ -99,6 +100,7 @@ input[type=submit]:hover {
                                         <input type="text" asp-for="PhoneNumber" name="phonenumber" placeholder="Enter your Phone Num..">
                                     </div>
                                 </div>
+                                -->
                                 <div class="row">
                                     <div class="col-25">
                                         <label asp-for="CourseLevel">Course Level</label>
@@ -130,6 +132,10 @@ input[type=submit]:hover {
                                 <div class="row">
                                     <input type="submit" value="Book Appointment">
                                 </div>
+                                <!--<input type="text" hidden asp-for="Name" name="Name" value="@ViewBag.Name" placeholder="Enter your name..">-->
+                                <input type="text" hidden asp-for="PhoneNumber" name="phonenumber" value="@ViewBag.PhoneNumber" placeholder="Enter your Phone Num..">
+                                <input type="text" hidden asp-for="Email" name="email" value="@ViewBag.Email">
+                                <input type="text" hidden asp-for="ParentName" name="parentname" value="@ViewBag.Name">
                             </div>
                         </form>
                     </div>

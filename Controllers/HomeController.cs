@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 
+using Azure;
+using Azure.Communication.Email;
+
 namespace CapstoneProject.Controllers
 {
     public class HomeController : Controller
@@ -18,6 +21,8 @@ namespace CapstoneProject.Controllers
         public static string loggedInName { get; set; } = string.Empty;
         public static string loggedInEmail { get; set; } = string.Empty;
         public static int loggedInID { get; set; } = 0;
+
+        public static string loggedInPhoneNum { get; set; } = string.Empty;
 
 
         [ActivatorUtilitiesConstructor]
@@ -79,6 +84,9 @@ namespace CapstoneProject.Controllers
         {
             if (loggedIn == true)
             {
+                ViewBag.Name = loggedInName;
+                ViewBag.PhoneNumber = loggedInPhoneNum;
+                ViewBag.Email = loggedInEmail;
                 return View();
             }
             else
@@ -223,6 +231,7 @@ namespace CapstoneProject.Controllers
                     loggedInEmail = account.Email;
                     loggedInName = account.ParentFirstName + " " + account.ParentLastName;
                     loggedInID = account.AccountID;
+                    loggedInPhoneNum = account.PhoneNumber;
                     Debug.WriteLine("ID in loggedInId: " + loggedInID);
                 }
 
@@ -273,9 +282,118 @@ namespace CapstoneProject.Controllers
 
         }
 
+        public IActionResult Account()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult SendEmail()
+        {
+
+            if (loggedIn == true && loggedInName == "Michelle De Melo" && loggedInID == 1)
+            {
+                return View(new ManageAppointPageModel
+                {
+                    Appointments = _appointmentRepository.GetAllAppointments
+                });
+            }
+            else if (loggedIn == true)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> SendEmail(string r)
+        {
+            string connectionString = "endpoint=https://capstonecommunicationservice.canada.communication.azure.com/;accesskey=tdzMvNimn8bBnlCCB4zVFPpYs0yeWyB+zFnwioDhOFRoqv35k4ckD0OzUBvOy3QKvnaOutP7NDrBDKHtzLEcYA==";
+            EmailClient emailClient = new EmailClient(connectionString);
+
+            List<AppointmentInfo> accounts = _appointmentRepository.GetUnpaidAppointments().ToList();
+
+            var recipient = string.Empty;
+            var recipientName = string.Empty;
+            var recipientStudentName = string.Empty;
+            var appointmentDate = DateTime.Now.ToLongDateString();
+            var appointmentTime = DateTime.Now.ToLongTimeString();
+
+            for (var j = 0; j < accounts.Count(); j++)
+            {
+
+                AppointmentInfo appointment = accounts.ElementAt(j);
+                
+                recipient = appointment.Email;
+                recipientName = appointment.ParentName;
+                recipientStudentName = appointment.Name;
+                appointmentDate = appointment.Date.ToLongDateString();
+                appointmentTime = appointment.Time.ToLongTimeString();
+                
+
+            
+
+                var subject = "Payment Reminder Email";
+                var htmlContent = "<html>" +
+                                    "<body>" +
+                                        "<h1>Hello " + recipientName + ",</h1>" +
+                                        "<br/><h4>This email is a reminder for you to pay for your up coming lesson for " + recipientStudentName + " at " + appointmentTime + " on " + appointmentDate + "</h4>" +
+                                        "<p>This is an automated email please do not reply.</p>" +
+                                        "<h1>Made By Me Studio </h1>" +
+                                    "</body>" +
+                                  "</html>";
+                var sender = "MadeByMeStudioDoNotReply@30fb12fd-b2f0-4146-a977-bd128260e935.azurecomm.net";
+
+                //var recipient = recipientsTest;
+
+                Debug.WriteLine("Mail Recipient: " + recipient);
+                try
+                {
+                    Debug.WriteLine("Sending email...");
+                    EmailSendOperation emailSendOperation = await emailClient.SendAsync(
+                        Azure.WaitUntil.Completed,
+                        sender,
+                        recipient,
+                        subject,
+                        htmlContent);
+
+                    EmailSendResult statusMonitor = emailSendOperation.Value;
+
+                    Debug.WriteLine($"Email Sent. Status = {emailSendOperation.Value.Status}");
+                    ViewBag.Result = "Email Sent.";
+
+                    /// Get the OperationId so that it can be used for tracking the message for troubleshooting
+                    string operationId = emailSendOperation.Id;
+                    Debug.WriteLine($"Email operation id = {operationId}");
+                }
+                catch (RequestFailedException ex)
+                {
+                    /// OperationID is contained in the exception message and can be used for troubleshooting purposes
+                    Debug.WriteLine($"Email send operation failed with error code: {ex.ErrorCode}, message: {ex.Message}");
+                    ViewBag.Result = "Email send failed.";
+                }
+            }
+            return View(new ManageAppointPageModel
+            {
+                Appointments = _appointmentRepository.GetAllAppointments
+            });
+        }
+
+        [HttpPost]
+        public IActionResult SaveAppointment(AppointmentInfo appointment)
+        {
+            Debug.WriteLine("Made it in Save Appointment: " + appointment.AppointmentID);
+            Debug.WriteLine("Name: " + appointment.Name);
+            ViewBag.Response = "Saved";
+            _appointmentRepository.UpdateAppointmentPayment(appointment.AppointmentID);
+            return RedirectToAction("SendEmail");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -8,9 +8,18 @@ namespace CapstoneProject.Models
     {
         public int AppointmentID { get; set; }
 
+        public bool Paid { get; set; }
+
         [Required(ErrorMessage = "The Name Field is Required.")]
         public string Name { get; set; } = string.Empty;
-        
+
+        [Required(ErrorMessage = "The Parent Name Field is Required.")]
+        public string ParentName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Please, enter your email")]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "The Phone Number Field is Required.")]
         [Phone]
         [RegularExpression("^(?:\\(?)(\\d{3})(?:[-\\).\\s]?)(\\d{3})(?:[-\\.\\s]?)(\\d{4})(?!\\d)", ErrorMessage = "Phone Number is not in correct format (123-456-7890)")]

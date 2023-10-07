@@ -1,0 +1,95 @@
+﻿@model ManageAppointPageModel
+@{
+    ViewData["Title"] = "Manage Appointments";
+    Layout = "_Layout";
+}
+
+<h1>@ViewBag.Result</h1>
+ 
+
+    <div>
+        <div>
+            <table border="1" width="100%">
+                <tr>
+                    <td style="padding: 10px;">
+                        <a><img src="/img/Logo_Cropped.jpg" style="width: 300px; height: 125px;" /></a>
+                    </td>
+                    <td style="padding: 10px;" width="65%" align="left">
+                        <h1 id="Title">Manage Payment</h1>
+                    </td>
+                </tr>
+            </table>
+        </div><br>
+        <div>
+            <table border="1" width="100%" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;" colspan="6">
+                            Upcoming Appointments:
+                            <!--<script>Date = new Date().toDateString(); document.write(Date)</script>-->
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Paid</th>
+                        <th>Child's Name</th>
+                        <th>Parent's Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                    
+                    @foreach (AppointmentInfo appointment in Model.Appointments)
+                    {
+
+                        <tr>
+                            <form method="post" asp-action="SaveAppointment" id="form">
+                                @if(appointment.Paid == true)
+                                {  
+                                    <td><input type='checkbox' id="checkbox" checked onchange="handleClick(@appointment.AppointmentID)" /></td>
+                                }
+                                else
+                                {
+                                    <td><input type='checkbox' id="checkbox" onclick="handleClick(@appointment.AppointmentID)" /></td>
+                                }
+                                    
+                                <td>@appointment.Name</td>
+                                <td>@appointment.ParentName</td>
+                                <td>@appointment.Email</td>
+                                <td>@appointment.Date.ToLongDateString()</td>
+                                <td>@appointment.Time.ToLongTimeString()</td>
+                        
+
+                                <input type="text" hidden asp-for="Appointment.AppointmentID" name="appointmentid" id="appointmentid" value="@appointment.AppointmentID" />
+                                <input type="text" hidden asp-for="Appointment.PhoneNumber" name="phonenumber" value="@appointment.PhoneNumber" />
+                                <input type="text" hidden asp-for="Appointment.Email" name="email" value="@appointment.Email" />
+                                <input type="text" hidden asp-for="Appointment.ParentName" name="parentname" value="@appointment.ParentName" />
+                                <input type="text" hidden asp-for="Appointment.CourseLevel" name="courselevel" value="@appointment.CourseLevel" />
+                                <input type="text" hidden asp-for="Appointment.Date" name="date" value="@appointment.Date.ToLongDateString()" />
+                                <input type="text" hidden asp-for="Appointment.Time" name="time" value="@appointment.Time.ToLongTimeString()" />
+                                <input type="text" hidden asp-for="Appointment.Name" name="name" value="@appointment.Name" />
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p>
+            <a asp-action="Index">Click here</a> to go back.
+        </p>
+    </div>
+    <div class="row">
+        <form method="post" asp-action="SendEmail">
+            <input type="submit" value="Test Send">
+        </form>
+    </div>
+
+<script>
+
+    function handleClick(id) {
+
+        document.getElementById('appointmentid').value = id
+        document.getElementById('form').submit()
+    }
+</script>

@@ -27,6 +27,11 @@ namespace CapstoneProject.Models
             return context.Appointments.FirstOrDefault(t => t.AppointmentID == id);
         }
 
+        public IQueryable<AppointmentInfo> GetUnpaidAppointments()
+        {
+            return context.Appointments.Where(t => t.Paid == false);
+        }
+
         public void AddAppointment(AppointmentInfo ai)
         {
             context.Appointments.Add(ai);
@@ -80,6 +85,26 @@ namespace CapstoneProject.Models
             res.CourseLevel = ai.CourseLevel;
             res.Date = ai.Date;
             res.Time = ai.Time;
+            res.Email = ai.Email;
+            res.ParentName = ai.ParentName;
+            res.Paid = ai.Paid;
+            context.SaveChanges();
+            return res;
+
+        }
+
+        public AppointmentInfo UpdateAppointmentPayment(int id)
+        {
+            var res = context.Appointments.FirstOrDefault(n => n.AppointmentID == id);
+            
+            if (res.Paid == false)
+            {
+                res.Paid = true;
+            }
+            else
+            {
+                res.Paid = false;
+            }
             context.SaveChanges();
             return res;
 

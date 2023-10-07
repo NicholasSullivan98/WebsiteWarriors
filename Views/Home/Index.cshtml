@@ -17,7 +17,7 @@
                 @if (ViewBag.LoggedIn == true)
                 {
                     <td style="padding: 10px;">
-                        Logged In As: @ViewBag.LoggedInName
+                        <a asp-action="Account">Logged In As: @ViewBag.LoggedInName</a>
                         <a asp-action="Logout"><button type="button">Logout</button></a>
                     </td>
                 }
@@ -101,4 +101,5 @@
     </div>
     <a asp-action="AddAppointment">Add Appointment</a>
     <a asp-action="ManageAppointments">Manage Appointments</a>
+    <a asp-action="SendEmail">Test Send Email</a>
 </div>
