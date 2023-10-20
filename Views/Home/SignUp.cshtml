@@ -1,4 +1,4 @@
-﻿@model CapstoneProject.Models.Account_Models.AccountInformation
+﻿@model CapstoneProject.Models.Account_Models.EmailConfirmationInformation
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Sign Up";
@@ -59,7 +59,6 @@
     </style>
 </head>
 <body>
-
     <div>
         <div>
             <table border="1" width="100%">
@@ -163,6 +162,12 @@
             </table>
         </div>
     </div>
+    <p style="color: red; font-size: 20px;" >@ViewBag.Result</p>
+    @if(ViewBag.Result != null)
+    {
+        <p><a asp-action="Login">Click here</a> to login.</p>
+    }
+    
     <p>
         <a asp-action="Index">Click here</a> to go back.
     </p>

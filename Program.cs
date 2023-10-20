@@ -18,6 +18,7 @@ builder.Services.AddDbContext<Capstone_DBContext>(opt =>
 builder.Services.AddScoped<IAppointmentRepository, CapstoneRepository>();
 builder.Services.AddScoped<IAccountRepository, CapstoneRepository>();
 builder.Services.AddScoped<IReviewRepository, CapstoneRepository>();
+builder.Services.AddScoped<IConfirmationRepository, CapstoneRepository>();
 
 var app = builder.Build();
 

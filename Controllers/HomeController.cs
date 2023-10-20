@@ -6,6 +6,10 @@ using System.Diagnostics;
 
 using Azure;
 using Azure.Communication.Email;
+using System;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Reflection;
+using System.Xml.Linq;
 
 namespace CapstoneProject.Controllers
 {
@@ -14,6 +18,7 @@ namespace CapstoneProject.Controllers
         public IAppointmentRepository _appointmentRepository;
         public IAccountRepository _accountRepository;
         public IReviewRepository _reviewRepository;
+        public IConfirmationRepository _confirmationRepository;
         public IDataSource dataSource = new AppointmentDataSource();
 
         public static bool loggedIn { get; set; } = false;
@@ -21,16 +26,22 @@ namespace CapstoneProject.Controllers
         public static string loggedInName { get; set; } = string.Empty;
         public static string loggedInEmail { get; set; } = string.Empty;
         public static int loggedInID { get; set; } = 0;
-
         public static string loggedInPhoneNum { get; set; } = string.Empty;
+
+        // For Email System
+        public static string sender { get; set; } = string.Empty;
+        public static string recipient { get; set; } = string.Empty;
+        public static string subject { get; set; } = string.Empty;
+        public static string htmlContent { get; set; } = string.Empty;
 
 
         [ActivatorUtilitiesConstructor]
-		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository, IReviewRepository reviewRepository)
+		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository, IReviewRepository reviewRepository, IConfirmationRepository confirmationRepository)
         {
             _appointmentRepository = appointmentRepository;
             _accountRepository = accountRepository;
             _reviewRepository = reviewRepository;
+            _confirmationRepository = confirmationRepository;
         }
 
 		[HttpGet]
@@ -188,17 +199,180 @@ namespace CapstoneProject.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult EmailConfirmed(int id)
+        {
+            //ViewBag.ID = id;
+
+            var accountToVerify = _confirmationRepository.GetAllConfirmations.FirstOrDefault(r => r.ConfirmationID == id) ?? null;
+
+            if (accountToVerify != null)
+            {
+                AccountInformation confirmedUser = new AccountInformation();
+                confirmedUser.ParentFirstName = accountToVerify.ParentFirstName;
+                confirmedUser.ParentLastName = accountToVerify.ParentLastName;
+                confirmedUser.StudentFirstName = accountToVerify.StudentFirstName;
+                confirmedUser.StudentLastName = accountToVerify.StudentLastName;
+                confirmedUser.Email = accountToVerify.Email;
+                confirmedUser.PhoneNumber = accountToVerify.PhoneNumber;
+                confirmedUser.Password = accountToVerify.Password;
+                confirmedUser.PasswordConformation = accountToVerify.PasswordConformation;
+
+                _accountRepository.AddUser(confirmedUser);
+
+                _confirmationRepository.DeleteConfirmation(id);
+            }
+            else
+            {
+                ViewBag.Result = "Account has already been verified. Please sign in.";
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult VerifyEmail()
+        {
+            //SendConfirmationEmail(sender, recipient, subject, htmlContent);
+            return View();
+        }
+
+        public async Task<IActionResult> CallConfirmationEmailSend()
+        {
+            Debug.WriteLine("Made it in CallConfirm");
+            SendConfirmationEmail();
+            TempData["Message"] = "Email re-sent";
+            return RedirectToAction("VerifyEmail");
+        }
+
         [HttpPost]
-        public IActionResult SignUp(AccountInformation ai)
+        public async Task<IActionResult> SignUp(EmailConfirmationInformation ei)
         {
             if (ModelState.IsValid)
             {
-                _accountRepository.AddUser(ai);
-                return RedirectToAction("Login");
+                AccountInformation loggedInUser = new AccountInformation();
+                var noDuplicate = false;
+
+                loggedInUser = _accountRepository.GetAllAccounts.FirstOrDefault(r => r.Email == ei.Email) ?? null;
+              
+                Debug.WriteLine("No Duplicate Value: " + noDuplicate);
+
+                if (loggedInUser == null)
+                {
+                    //_accountRepository.AddUser(ai);
+
+                    //EmailConfirmationInformation ei = new EmailConfirmationInformation();
+                    //ei.Email = ai.Email;
+                    _confirmationRepository.AddConfirmation(ei);
+
+                    EmailConfirmationInformation newConfrimation = _confirmationRepository.GetAllConfirmations.FirstOrDefault(r => r.Email == ei.Email);
+
+                    //Send Email
+                    /*
+                    string connectionString = "endpoint=https://capstonecommunicationservice.canada.communication.azure.com/;accesskey=tdzMvNimn8bBnlCCB4zVFPpYs0yeWyB+zFnwioDhOFRoqv35k4ckD0OzUBvOy3QKvnaOutP7NDrBDKHtzLEcYA==";
+                    EmailClient emailClient = new EmailClient(connectionString);
+                    */
+                    var host = Request.Host.Host;
+                    var port = Request.Host.Port;
+                    var scheme = Request.Scheme;
+
+                    Debug.WriteLine("Host: " + host + " Port: " + port + " Scheme: " + scheme);
+
+                    var url = scheme + "://" + host + ":" + port + "/Home/EmailConfirmed/" + newConfrimation.ConfirmationID;
+
+                    recipient = newConfrimation.Email;
+                    var recipientName = ei.ParentFirstName + " " + ei.ParentLastName;
+
+                    subject = "Confirmation Email";
+                    htmlContent = "<html>" +
+                                        "<body>" +
+                                            "<h1>Hello " + recipientName + ",</h1>" +
+                                            "<br/><p>This email was sent as a confirmation email for you to verify your account for Made By Me Studio</p>" +
+                                            "<a href ='" + url + "'>" + url + "</a>" +
+                                            "<p>This is an automated email please do not reply.</p>" +
+                                            "<h1>Made By Me Studio </h1>" +
+                                        "</body>" +
+                                      "</html>";
+                    sender = "MadeByMeStudioDoNotReply@30fb12fd-b2f0-4146-a977-bd128260e935.azurecomm.net";
+
+                    SendConfirmationEmail();
+
+                    //var recipient = recipientsTest;
+                    /*
+                    Debug.WriteLine("Mail Recipient: " + recipient);
+                    try
+                    {
+                        Debug.WriteLine("Sending email...");
+                        EmailSendOperation emailSendOperation = await emailClient.SendAsync(
+                            Azure.WaitUntil.Completed,
+                            sender,
+                            recipient,
+                            subject,
+                            htmlContent
+                        );
+
+                        EmailSendResult statusMonitor = emailSendOperation.Value;
+
+                        Debug.WriteLine($"Email Sent. Status = {emailSendOperation.Value.Status}");
+                        ViewBag.Result = "Email Sent.";
+
+                        /// Get the OperationId so that it can be used for tracking the message for troubleshooting
+                        string operationId = emailSendOperation.Id;
+                        Debug.WriteLine($"Email operation id = {operationId}");
+                    }
+                    catch (RequestFailedException ex)
+                    {
+                        /// OperationID is contained in the exception message and can be used for troubleshooting purposes
+                        Debug.WriteLine($"Email send operation failed with error code: {ex.ErrorCode}, message: {ex.Message}");
+                        ViewBag.Result = "Email send failed.";
+                    }
+                    */
+
+                    return RedirectToAction("VerifyEmail");
+                }
+                else
+                {
+                    ViewBag.Result = "Account with that email already exists";
+                    return View();
+                }
             }
             else
             {
                 return View();
+            }
+        }
+
+        public async void SendConfirmationEmail()
+        {
+            string connectionString = "endpoint=https://capstonecommunicationservice.canada.communication.azure.com/;accesskey=tdzMvNimn8bBnlCCB4zVFPpYs0yeWyB+zFnwioDhOFRoqv35k4ckD0OzUBvOy3QKvnaOutP7NDrBDKHtzLEcYA==";
+            EmailClient emailClient = new EmailClient(connectionString);
+
+            Debug.WriteLine("Mail Recipient: " + recipient);
+            try
+            {
+                Debug.WriteLine("Sending email...");
+                EmailSendOperation emailSendOperation = await emailClient.SendAsync(
+                    Azure.WaitUntil.Completed,
+                    sender,
+                    recipient,
+                    subject,
+                    htmlContent
+                );
+
+                EmailSendResult statusMonitor = emailSendOperation.Value;
+
+                Debug.WriteLine($"Email Sent. Status = {emailSendOperation.Value.Status}");
+                ViewBag.Result = "Email Sent.";
+
+                /// Get the OperationId so that it can be used for tracking the message for troubleshooting
+                string operationId = emailSendOperation.Id;
+                Debug.WriteLine($"Email operation id = {operationId}");
+            }
+            catch (RequestFailedException ex)
+            {
+                /// OperationID is contained in the exception message and can be used for troubleshooting purposes
+                Debug.WriteLine($"Email send operation failed with error code: {ex.ErrorCode}, message: {ex.Message}");
+                ViewBag.Result = "Email send failed.";
             }
         }
 
@@ -284,7 +458,10 @@ namespace CapstoneProject.Controllers
 
         public IActionResult Account()
         {
-            return View();
+            return View(new ManageAccountPageModel
+            {
+                Accounts = _accountRepository.GetLoggedInAccountInfo(loggedInID)
+            });
         }
 
         public IActionResult Privacy()
@@ -384,6 +561,109 @@ namespace CapstoneProject.Controllers
             {
                 Appointments = _appointmentRepository.GetAllAppointments
             });
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(int id)
+        {
+
+            AccountInformation account = _accountRepository.GetLoggedInAccountInfo(id);
+
+            return View(account);
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword(AccountInformation ai, int id)
+        {
+
+            Debug.WriteLine("Old Password: " + ai.StudentFirstName);
+            Debug.WriteLine("");
+
+            AccountInformation loggedInUser = _accountRepository.GetAllAccounts.FirstOrDefault(r => r.Email == ai.Email);
+            Debug.WriteLine("Old Password in Database: " + loggedInUser.Password);
+
+            bool verifyPassword = false;
+            if (ModelState.IsValid)
+            {
+                verifyPassword = BCrypt.Net.BCrypt.Verify(ai.StudentFirstName, loggedInUser.Password);
+                if (verifyPassword == true)
+                {
+                    _accountRepository.UpdateUser(ai, id);
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ViewBag.Result = "Old Password was Incorrect";
+                    AccountInformation account = _accountRepository.GetLoggedInAccountInfo(id);
+
+                    return View(account);
+                }
+
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPasswordEmail(string r)
+        {
+            string connectionString = "endpoint=https://capstonecommunicationservice.canada.communication.azure.com/;accesskey=tdzMvNimn8bBnlCCB4zVFPpYs0yeWyB+zFnwioDhOFRoqv35k4ckD0OzUBvOy3QKvnaOutP7NDrBDKHtzLEcYA==";
+            EmailClient emailClient = new EmailClient(connectionString);
+
+            var recipient = loggedInEmail;
+            var recipientName = loggedInName;
+
+            //var scheme = Request.Url.Scheme;
+            var host = Request.Host.Host;
+            var port = Request.Host.Port;
+            var scheme = Request.Scheme;
+
+            Debug.WriteLine("Host: " + host + " Port: " + port + " Scheme: " + scheme);
+
+            var url = scheme + "://" + host + ":" + port + "/Home/ResetPassword/" + loggedInID;
+
+            var subject = "Reset Password";
+            var htmlContent = "<html>" +
+                                "<body>" +
+                                    "<h1>Hello " + recipientName + ",</h1>" +
+                                    "<p>This is a test reset password email.</p>" +
+                                    "<a href ='" + url + "'>" + url + "</a>" +
+                                "</body>" +
+                                "</html>";
+            var sender = "MadeByMeStudioDoNotReply@30fb12fd-b2f0-4146-a977-bd128260e935.azurecomm.net";
+
+            //var recipient = recipientsTest;
+
+            Debug.WriteLine("Mail Recipient: " + recipient);
+            try
+            {
+                Debug.WriteLine("Sending email...");
+                EmailSendOperation emailSendOperation = await emailClient.SendAsync(
+                    Azure.WaitUntil.Completed,
+                    sender,
+                    recipient,
+                    subject,
+                    htmlContent);
+
+                EmailSendResult statusMonitor = emailSendOperation.Value;
+
+                Debug.WriteLine($"Email Sent. Status = {emailSendOperation.Value.Status}");
+                ViewBag.Result = "Email Sent.";
+
+                /// Get the OperationId so that it can be used for tracking the message for troubleshooting
+                string operationId = emailSendOperation.Id;
+                Debug.WriteLine($"Email operation id = {operationId}");
+            }
+            catch (RequestFailedException ex)
+            {
+                /// OperationID is contained in the exception message and can be used for troubleshooting purposes
+                Debug.WriteLine($"Email send operation failed with error code: {ex.ErrorCode}, message: {ex.Message}");
+                ViewBag.Result = "Email send failed.";
+            }
+            
+            return RedirectToAction("Account");
         }
 
         [HttpPost]

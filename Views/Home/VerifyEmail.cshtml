@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Login";
+}
+
+<h1>An email has been sent to the provided email address.</h1>
+<h4>Please confirm your email address. (Check spam folder)</h4>
+
+<h4>@TempData["Message"]</h4>
+
+<p>
+    Didn't get the email?<a asp-action="CallConfirmationEmailSend">Resend Email</a>
+</p>
+<p>
+    <a asp-action="Login">Click here</a> to Login.
+</p>
+

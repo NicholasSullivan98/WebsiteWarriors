@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace CapstoneProject.Models
 {
-    public class CapstoneRepository : IAppointmentRepository, IAccountRepository, IReviewRepository
+    public class CapstoneRepository : IAppointmentRepository, IAccountRepository, IReviewRepository, IConfirmationRepository
     {
         private Capstone_DBContext context;
         public CapstoneRepository(Capstone_DBContext ctx)
@@ -17,6 +17,13 @@ namespace CapstoneProject.Models
         public IQueryable<AppointmentInfo> GetAllAppointments => context.Appointments.OrderBy(a => a.Time.Hour);
         public IQueryable<AccountInformation> GetAllAccounts => context.Accounts;
         public IQueryable<ReviewInformation> GetAllReviews => context.Reviews;
+        public IQueryable<EmailConfirmationInformation> GetAllConfirmations => context.Confirmations;
+
+        public AccountInformation GetLoggedInAccountInfo(int id)
+        {
+            return context.Accounts.FirstOrDefault(n => n.AccountID == id);
+        }
+
         public ReviewInformation Get3Reviews()
         {
             return context.Reviews.FirstOrDefault(n => n.ReviewID < 3);
@@ -44,14 +51,38 @@ namespace CapstoneProject.Models
         {
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(ai.Password);
 
-            Debug.WriteLine(ai.Password);
-            Debug.WriteLine(passwordHash);
+            //Debug.WriteLine(ai.Password);
+            //Debug.WriteLine(passwordHash);
 
             ai.Password = passwordHash;
             ai.PasswordConformation = passwordHash;
 
             context.Accounts.Add(ai);
             context.SaveChanges();
+        }
+
+        public void AddConfirmation(EmailConfirmationInformation ci)
+        {
+            context.Confirmations.Add(ci);
+            context.SaveChanges();
+        }
+
+        public void DeleteConfirmation(int id)
+        {
+            var res = context.Confirmations.FirstOrDefault(n => n.ConfirmationID == id);
+            context.Confirmations.Remove(res);
+            context.SaveChanges();
+        }
+
+        public AccountInformation UpdateUser(AccountInformation ai, int id)
+        {
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(ai.Password);
+
+            var res = context.Accounts.FirstOrDefault(n => n.AccountID == id);
+            res.Password = passwordHash;
+            res.PasswordConformation = passwordHash;
+            context.SaveChanges();
+            return res;
         }
 
         public void AddReview(ReviewInformation ri) 

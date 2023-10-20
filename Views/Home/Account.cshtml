@@ -1,6 +1,152 @@
-﻿@{
+﻿@model ManageAccountPageModel
+@{
     ViewData["Title"] = "Account Settings";
+    Layout = "_layout";
 }
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-<p>Account Settings Coming Soon</p>
+        input[type=text], select, textarea, [type=date], [type=time], [type=password] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+            input[type=submit]:hover {
+                background-color: #3fe86c;
+            }
+
+        .pageContainer {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>@ViewBag.Result</h1>
+    <div>
+        <div>
+            <table border="1" width="100%">
+                <tr>
+                    <td style="padding: 10px;">
+                        <a><img src="/img/Logo_Cropped.jpg" style="width: 300px; height: 125px;" /></a>
+                    </td>
+                    <td style="padding: 10px;" width="60%" align="left">
+                        <h1>Account Settings</h1>
+                    </td>
+                </tr>
+            </table>
+        </div><br>
+        <div>
+            <table border="1" width="100%">
+                <tr>
+                    <td style="padding: 10px;">
+                        <div class="pageContainer">
+                            <form method="post" asp-action="ResetPasswordEmail">
+                                <!--Parent Name-->
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>First Name</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="ParentFirstName" disabled value="@Model.Accounts.ParentFirstName">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Last Name</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="ParentLastName" disabled value="@Model.Accounts.ParentLastName">
+                                    </div>
+                                </div>
+                                <!--Child Name-->
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Child First Name</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="StudentFirstName" disabled value="@Model.Accounts.StudentFirstName">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Child Last Name</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="StudentLastName" disabled value="@Model.Accounts.StudentLastName">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="Email" disabled value="@Model.Accounts.Email">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>PhoneNumber</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="phonenumber" disabled value="@Model.Accounts.PhoneNumber">
+                                    </div>
+                                </div><br />
+                                <div class="row">
+                                    <input type="submit" value="Test Send">
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <a href="https://www.instagram.com/madebymesewingstudio/">Instagram</a>
+                        <a href="https://www.facebook.com/">Facebook</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p>
+        <a asp-action="Index">Click here</a> to go back.
+    </p>
+</body>
+</html>
+

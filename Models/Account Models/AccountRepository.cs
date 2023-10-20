@@ -12,5 +12,6 @@ namespace CapstoneProject.Models.Account_Models
         }
 
         public static IEnumerable<AccountInformation> GetAccounts => _accounts;
+
     }
 }

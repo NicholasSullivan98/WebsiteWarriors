@@ -10,5 +10,6 @@ namespace CapstoneProject.Models
         public DbSet<AppointmentInfo> Appointments { get; set; }
         public DbSet<AccountInformation> Accounts { get; set; }
         public DbSet<ReviewInformation> Reviews { get; set; }
+        public DbSet<EmailConfirmationInformation> Confirmations { get; set; }
     }
 }
