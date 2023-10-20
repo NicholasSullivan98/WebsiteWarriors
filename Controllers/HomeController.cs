@@ -297,37 +297,6 @@ namespace CapstoneProject.Controllers
 
                     SendConfirmationEmail();
 
-                    //var recipient = recipientsTest;
-                    /*
-                    Debug.WriteLine("Mail Recipient: " + recipient);
-                    try
-                    {
-                        Debug.WriteLine("Sending email...");
-                        EmailSendOperation emailSendOperation = await emailClient.SendAsync(
-                            Azure.WaitUntil.Completed,
-                            sender,
-                            recipient,
-                            subject,
-                            htmlContent
-                        );
-
-                        EmailSendResult statusMonitor = emailSendOperation.Value;
-
-                        Debug.WriteLine($"Email Sent. Status = {emailSendOperation.Value.Status}");
-                        ViewBag.Result = "Email Sent.";
-
-                        /// Get the OperationId so that it can be used for tracking the message for troubleshooting
-                        string operationId = emailSendOperation.Id;
-                        Debug.WriteLine($"Email operation id = {operationId}");
-                    }
-                    catch (RequestFailedException ex)
-                    {
-                        /// OperationID is contained in the exception message and can be used for troubleshooting purposes
-                        Debug.WriteLine($"Email send operation failed with error code: {ex.ErrorCode}, message: {ex.Message}");
-                        ViewBag.Result = "Email send failed.";
-                    }
-                    */
-
                     return RedirectToAction("VerifyEmail");
                 }
                 else
