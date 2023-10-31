@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wv7S1P0En4UTfBcsKZ4WVjYYx3CE4+AJ+h+ZuVEZpwhG7BeHm1ERoNmUCgymgIJ97Gx5geqpKoLT6ZzlP9f9yQ==",
+  "dgSpecHash": "Vyu6gTq0F0BRZxKIksDseLQjO90o59aWlj7kWJW/TJJ2OQ972LfX2SbJXcVwr1UMII1lKLcfJyKqWNMzK8saDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nicho\\source\\repos\\NicholasSullivan98\\WebsiteWarriors\\CapstoneProject.csproj",
+  "projectFilePath": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\CapstoneProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nicho\\.nuget\\packages\\azure.communication.email\\1.0.1\\azure.communication.email.1.0.1.nupkg.sha512",
     "C:\\Users\\nicho\\.nuget\\packages\\azure.core\\1.34.0\\azure.core.1.34.0.nupkg.sha512",

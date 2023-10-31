@@ -4,6 +4,7 @@ using CapstoneProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneProject.Migrations
 {
     [DbContext(typeof(Capstone_DBContext))]
-    partial class Capstone_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20231027190317_AnotherStudentTableUpdate")]
+    partial class AnotherStudentTableUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,6 +41,9 @@ namespace CapstoneProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentAccountID")
+                        .HasColumnType("int");
+
                     b.Property<string>("ParentFirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -58,12 +64,9 @@ namespace CapstoneProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentID")
-                        .HasColumnType("int");
-
                     b.HasKey("AccountID");
 
-                    b.HasIndex("StudentID");
+                    b.HasIndex("ParentAccountID");
 
                     b.ToTable("Accounts");
                 });
@@ -214,7 +217,7 @@ namespace CapstoneProject.Migrations
                 {
                     b.HasOne("CapstoneProject.Models.Account_Models.StudentInformation", "StudentInformation")
                         .WithMany()
-                        .HasForeignKey("StudentID");
+                        .HasForeignKey("ParentAccountID");
 
                     b.Navigation("StudentInformation");
                 });

@@ -1,0 +1,175 @@
+﻿@{
+    ViewData["Title"] = "Services";
+    Layout = "_Layout";
+}
+<head>
+    <style>
+        .ticket-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .ticket-list {
+            width: 300px;
+            height: 350px;
+            margin: 30px;
+            background-color: grey !important;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius: 20px;
+            border: 1px solid grey;
+            padding: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-header {
+            color: white;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px 0px;
+        }
+
+        .ticket-icon {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+        }
+
+        .ticket-text {
+            margin-top: 20px;
+        }
+
+            .ticket-text li {
+                font-size: 16px;
+            }
+
+        .ticket-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ticket-price {
+            color: white;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            padding: 10px 30px;
+            font-weight: 800;
+            background: black;
+        }
+
+        .buy-ticket-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        label {
+            font-weight: 800;
+        }
+
+        form {
+            padding-top: 25px;
+        }
+
+        .buy-ticket-image {
+            width: 400px;
+            height: 350px;
+        }
+
+            .buy-ticket-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .buy-ticket-form {
+            color: black;
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px !important;
+            margin: 10px 0px;
+            height: 40px;
+            border: 1px solid;
+            width: 60%;
+        }
+    </style>
+</head>
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="ticket" id="ticket">
+
+    <h2>Summer Camps</h2>
+
+    <div class="ticket-main">
+        <div class="ticket-list ticket-pro">
+            <br />
+            <h4 class="ticket-header">
+                Begginner
+            </h4>
+            <div class="ticket-icon">
+                <img src="img/vip-card.png" loading="lazy" alt="vip-card" />
+            </div>
+            <div class="ticket-text">
+                <li>1 on 1 Lessons</li>
+                <li>Free Drink and Food</li>
+                <li>Take Home End Product</li>
+            </div>
+            <a href="#book" class="w3-btn w3-red w3-margin-top w3-round" style="width: 100%;">
+                Book Now
+            </a>
+            <div class="ticket-price">
+                <p>$100</p>
+            </div>
+        </div>
+        <div class="ticket-list ">
+            <br />
+            <h4 class="ticket-header">
+                Intermediate
+            </h4>
+            <div class="ticket-icon">
+                <img src="img/family-group.svg" loading="lazy" alt="family" />
+            </div>
+            <div class="ticket-text">
+                <li>1 on 1 Lessons</li>
+                <li>Free Drink and Food</li>
+                <li>Take Home End Product</li>
+            </div>
+            <a href="#book" class="w3-btn w3-red w3-margin-top w3-round" style="width: 100%;">
+                Book Now
+            </a>
+            <div class="ticket-price">
+                <p>$120</p>
+            </div>
+        </div>
+        <div class="ticket-list">
+            <br />
+            <h4 class="ticket-header">
+                Advanced
+            </h4>
+            <div class="ticket-icon">
+                <img src="img/guarantee.png" loading="lazy" alt="guarantee" />
+            </div>
+            <div class="ticket-text">
+                <li>1 on 1 Lessons</li>
+                <li>Free Drink and Food</li>
+                <li>Take Home End Product</li>
+            </div>
+            <a href="#book" class="w3-btn w3-red w3-margin-top w3-round" style="width: 100%;">
+                Book Now
+            </a>
+            <div class="ticket-price">
+                <p>$140</p>
+            </div>
+        </div>
+    </div>
+
+</div>

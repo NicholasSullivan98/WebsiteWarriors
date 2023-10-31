@@ -7,6 +7,53 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CapstoneProject.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <style>
+        .dropbtn {
+            background-color: white;
+            color: black;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: darkgrey;
+        }
+    </style>
+
 </head>
 <body>
     <header>
@@ -22,9 +69,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About Us">About Us</a>
-                        </li>
+                        </li>-->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
                         </li>
@@ -34,14 +81,43 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Reviews">Reviews</a>
                         </li>
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact Us">Contact Us</a>
-                        </li>
+                        </li>-->
                     </ul>
+
+                    @if (ViewBag.LoggedIn == true)
+                    {
+                        <td style="padding: 10px;">
+
+                            <div class="dropdown" style="float:right;">
+                                <button class="dropbtn">@ViewBag.LoggedInName
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a asp-action="Account">Account Settings</a>
+                                    <a asp-action="Logout">Logout</a>
+                                </div>
+                            </div>
+
+                            <!--<a asp-action="Account">@ViewBag.LoggedInName</a>-->
+                            <!--<a asp-action="Logout"><button type="button">Logout</button></a>-->
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="padding: 10px;">
+                            <a asp-action="Login"><button type="button">Login</button></a>
+                            <a asp-action="SignUp"><button type="button">Sign Up</button></a>
+                        </td>
+                    }
+
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

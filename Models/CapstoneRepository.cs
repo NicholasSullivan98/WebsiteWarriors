@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace CapstoneProject.Models
 {
-    public class CapstoneRepository : IAppointmentRepository, IAccountRepository, IReviewRepository, IConfirmationRepository
+    public class CapstoneRepository : IAppointmentRepository, IAccountRepository, IReviewRepository, IConfirmationRepository, IStudentRepository
     {
         private Capstone_DBContext context;
         public CapstoneRepository(Capstone_DBContext ctx)
@@ -18,6 +18,7 @@ namespace CapstoneProject.Models
         public IQueryable<AccountInformation> GetAllAccounts => context.Accounts;
         public IQueryable<ReviewInformation> GetAllReviews => context.Reviews;
         public IQueryable<EmailConfirmationInformation> GetAllConfirmations => context.Confirmations;
+        public IQueryable<StudentInformation> GetAllStudents => context.Students;
 
         public AccountInformation GetLoggedInAccountInfo(int id)
         {
@@ -37,6 +38,11 @@ namespace CapstoneProject.Models
         public IQueryable<AppointmentInfo> GetUnpaidAppointments()
         {
             return context.Appointments.Where(t => t.Paid == false);
+        }
+
+        public StudentInformation GetStudent(int id)
+        {
+            return context.Students.FirstOrDefault(t => t.StudentID == id);
         }
 
         public void AddAppointment(AppointmentInfo ai)
@@ -64,6 +70,12 @@ namespace CapstoneProject.Models
         public void AddConfirmation(EmailConfirmationInformation ci)
         {
             context.Confirmations.Add(ci);
+            context.SaveChanges();
+        }
+
+        public void AddStudent(StudentInformation si)
+        {
+            context.Students.Add(si);
             context.SaveChanges();
         }
 

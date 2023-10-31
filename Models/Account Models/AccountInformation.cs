@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CapstoneProject.Models.Account_Models
 {
@@ -14,11 +15,6 @@ namespace CapstoneProject.Models.Account_Models
 
         [Required(ErrorMessage = "Please, enter your last name")]
         public string ParentLastName { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Please, enter your child's first name")]
-        public string StudentFirstName { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Please, enter your child's last name")]
-        public string StudentLastName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please, enter your email")]
         [EmailAddress]
@@ -35,5 +31,12 @@ namespace CapstoneProject.Models.Account_Models
         [Required(ErrorMessage = "Please, confirm your password")]
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string PasswordConformation { get; set; } = string.Empty;
+
+        public string OldPassword { get; set; } = string.Empty;
+
+        public int? StudentID { get; set; } // Foreign key
+        
+        [ForeignKey("StudentID")]
+        public virtual StudentInformation? StudentInformation { get; set; }
     }
 }

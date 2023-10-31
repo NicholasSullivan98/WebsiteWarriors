@@ -1,7 +1,7 @@
-﻿@model CapstoneProject.Models.Account_Models.AccountInformation
+﻿@model CapstoneProject.Models.Account_Models.StudentInformation
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Reset Password";
+    ViewData["Title"] = "Add Child";
 }
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
     </style>
 </head>
 <body>
-    <h1>@ViewBag.Result</h1>
+
     <div>
         <div>
             <table border="1" width="100%">
@@ -67,8 +67,8 @@
                     <td style="padding: 10px;">
                         <a><img src="/img/Logo_Cropped.jpg" style="width: 300px; height: 125px;" /></a>
                     </td>
-                    <td style="padding: 10px;" width="60%" align="left">
-                        <h1>Reset Password</h1>
+                    <td style="padding: 10px;" width="55%" align="left">
+                        <h1>Login</h1>
                     </td>
                 </tr>
             </table>
@@ -78,46 +78,50 @@
                 <tr>
                     <td style="padding: 10px;">
                         <div class="pageContainer">
-                            <form method="post" asp-action="ResetPassword">
+                            <form method="post" asp-action="AddChild">
                                 <div asp-validation-summary="All">
                                     <div class="row">
                                         <div class="col-25">
-                                            <label>Old Password: </label>
+                                            <label asp-for="StudentFirstName">Child First Name</label>
                                         </div>
                                         <div class="col-75">
-                                            <input asp-for="OldPassword" type="password" placeholder="Enter your old password.." />
+                                            <input type="text" asp-for="StudentFirstName" name="StudentFirstName" placeholder="Enter your Childs First Name..">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-25">
-                                            <label asp-for="Password">New Password: </label>
+                                            <label asp-for="StudentLastName">Child Last Name</label>
                                         </div>
                                         <div class="col-75">
-                                            <input asp-for="Password" type="password" placeholder="Enter your new password.." />
+                                            <input type="text" asp-for="StudentLastName" name="StudentLastName" placeholder="Enter your Childs Last Name..">
                                         </div>
                                     </div>
+                                    <input hidden type="text" asp-for="ParentAccountID" name="ParentAccountID" value="@TempData["AccountID"]" />
+                                    <br />
                                     <div class="row">
-                                        <div class="col-25">
-                                            <label asp-for="PasswordConformation">Re-Enter New Password: </label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input asp-for="PasswordConformation" type="password" placeholder="Re-Enter your password.." />
-                                        </div>
-                                    </div><br>
-                                    <div class="row">
-                                        <input type="submit" value="Reset Password">
+                                        <input type="submit" value="Login">
                                     </div>
-                                    <input type="text" asp-for="ParentFirstName" name="ParentFirstName" hidden value="@Model.ParentFirstName">
-                                    <input type="text" asp-for="ParentLastName" name="ParentLastName" hidden value="@Model.ParentLastName">
-                                    <input type="text" asp-for="Email" name="Email" hidden value="@Model.Email">
-                                    <input type="text" asp-for="PhoneNumber" name="PhoneNumber" hidden value="@Model.PhoneNumber">
                                 </div>
                             </form>
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <a href="https://www.instagram.com/madebymesewingstudio/">Instagram</a>
+                        <a href="https://www.facebook.com/">Facebook</a>
+                    </td>
+                </tr>
             </table>
         </div>
+        <div style="color: springgreen;">@ViewBag.Response</div>
+        <div style="color: red;">@ViewBag.Error</div>
+        <p>
+            <a asp-action="SignUp">Click here</a> to Sign Up.
+        </p>
+        <p>
+            <a asp-action="Index">Click here</a> to go back.
+        </p>
     </div>
 </body>
 </html>

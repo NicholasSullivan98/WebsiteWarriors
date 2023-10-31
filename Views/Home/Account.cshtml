@@ -96,22 +96,30 @@
                                     </div>
                                 </div>
                                 <!--Child Name-->
-                                <div class="row">
-                                    <div class="col-25">
-                                        <label>Child First Name</label>
-                                    </div>
-                                    <div class="col-75">
-                                        <input type="text" name="StudentFirstName" disabled value="@Model.Accounts.StudentFirstName">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-25">
-                                        <label>Child Last Name</label>
-                                    </div>
-                                    <div class="col-75">
-                                        <input type="text" name="StudentLastName" disabled value="@Model.Accounts.StudentLastName">
-                                    </div>
-                                </div>
+                                
+                                @foreach (CapstoneProject.Models.Account_Models.StudentInformation student in Model.Students)
+                                {
+                                    @if (student.ParentAccountID == Model.Accounts.AccountID)
+                                    {
+                                        <div>
+                                            <div class="col-25">
+                                                <label>Child First Name</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" name="ChildFirstName" disabled value="@student.StudentFirstName">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="col-25">
+                                                <label>Child Last Name</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" name="ChildLastName" disabled value="@student.StudentLastName">
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                
                                 <div class="row">
                                     <div class="col-25">
                                         <label>Email</label>
@@ -129,7 +137,11 @@
                                     </div>
                                 </div><br />
                                 <div class="row">
-                                    <input type="submit" value="Test Send">
+                                    <a asp-action="AddChild">Add Child</a> 
+                                </div>
+                                <a asp-action="Logout"><button type="button">Logout</button></a>
+                                <div class="row">
+                                    <input type="submit" value="Reset Password">
                                 </div>
                             </form>
                         </div>

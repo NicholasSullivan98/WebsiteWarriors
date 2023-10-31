@@ -19,6 +19,7 @@ namespace CapstoneProject.Controllers
         public IAccountRepository _accountRepository;
         public IReviewRepository _reviewRepository;
         public IConfirmationRepository _confirmationRepository;
+        public IStudentRepository _studentRepository;
         public IDataSource dataSource = new AppointmentDataSource();
 
         public static bool loggedIn { get; set; } = false;
@@ -36,18 +37,20 @@ namespace CapstoneProject.Controllers
 
 
         [ActivatorUtilitiesConstructor]
-		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository, IReviewRepository reviewRepository, IConfirmationRepository confirmationRepository)
+		public HomeController(IAppointmentRepository appointmentRepository, IAccountRepository accountRepository, IReviewRepository reviewRepository, IConfirmationRepository confirmationRepository, IStudentRepository studentRepository)
         {
             _appointmentRepository = appointmentRepository;
             _accountRepository = accountRepository;
             _reviewRepository = reviewRepository;
             _confirmationRepository = confirmationRepository;
+            _studentRepository = studentRepository;
         }
 
 		[HttpGet]
         public IActionResult Reviews()
         {
             ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             ViewBag.LoggedInID = loggedInID;
             return View(new ManageReviewPageModel
             {
@@ -58,6 +61,7 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult AddReview()
         {
+            ViewBag.LoggedIn = loggedIn;
             ViewBag.LoggedInName = loggedInName;
             if (loggedIn == true)
             {
@@ -93,6 +97,8 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult AddAppointment()
         {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             if (loggedIn == true)
             {
                 ViewBag.Name = loggedInName;
@@ -130,6 +136,8 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult ManageAppointments()
         {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             if (loggedIn == true && loggedInName == "Michelle De Melo" && loggedInID == 1)
             {
                 return View(new ManageAppointPageModel
@@ -149,6 +157,8 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult EditAppointment(int id)
         {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             if (loggedIn == true && loggedInName == "Michelle De Melo" && loggedInID == 1)
             {
                 AppointmentInfo appointment = _appointmentRepository.GetAppointment(id);
@@ -208,17 +218,41 @@ namespace CapstoneProject.Controllers
 
             if (accountToVerify != null)
             {
+
+                StudentInformation newStudent = new StudentInformation();
                 AccountInformation confirmedUser = new AccountInformation();
+                
+                newStudent.StudentFirstName = accountToVerify.StudentFirstName;
+                newStudent.StudentLastName = accountToVerify.StudentLastName;
+                
+                
+                //_studentRepository.AddStudent(newStudent);
+
+                var getStudentID = _studentRepository.GetAllStudents.FirstOrDefault(r => r.StudentFirstName == newStudent.StudentFirstName);
+
                 confirmedUser.ParentFirstName = accountToVerify.ParentFirstName;
                 confirmedUser.ParentLastName = accountToVerify.ParentLastName;
-                confirmedUser.StudentFirstName = accountToVerify.StudentFirstName;
-                confirmedUser.StudentLastName = accountToVerify.StudentLastName;
+                //confirmedUser.ParentAccountID = getStudentID.ParentAccountID;
+                //confirmedUser.StudentInformation.StudentFirstName = accountToVerify.StudentFirstName;
+                //confirmedUser.StudentInformation.StudentLastName = accountToVerify.StudentLastName;
                 confirmedUser.Email = accountToVerify.Email;
                 confirmedUser.PhoneNumber = accountToVerify.PhoneNumber;
                 confirmedUser.Password = accountToVerify.Password;
                 confirmedUser.PasswordConformation = accountToVerify.PasswordConformation;
 
                 _accountRepository.AddUser(confirmedUser);
+
+                var getNewAccountID = _accountRepository.GetAllAccounts.FirstOrDefault(r => r.ParentFirstName == confirmedUser.ParentFirstName && r.ParentLastName == confirmedUser.ParentLastName && r.Email == confirmedUser.Email);
+
+                newStudent.ParentAccountID = getNewAccountID.AccountID;
+
+                //Debug.WriteLine("ParentAccountID: " +  newStudent.ParentAccountID);
+
+                _studentRepository.AddStudent(newStudent);
+
+                //confirmedUser.ParentAccountID = newStudent.ParentAccountID;
+
+                //_accountRepository.UpdateUser(confirmedUser, getNewAccountID.AccountID);
 
                 _confirmationRepository.DeleteConfirmation(id);
             }
@@ -427,10 +461,20 @@ namespace CapstoneProject.Controllers
 
         public IActionResult Account()
         {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             return View(new ManageAccountPageModel
             {
-                Accounts = _accountRepository.GetLoggedInAccountInfo(loggedInID)
+                Accounts = _accountRepository.GetLoggedInAccountInfo(loggedInID),
+                Students = _studentRepository.GetAllStudents
             });
+        }
+
+        public IActionResult Services()
+        {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
+            return View();
         }
 
         public IActionResult Privacy()
@@ -440,7 +484,8 @@ namespace CapstoneProject.Controllers
 
         public IActionResult SendEmail()
         {
-
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             if (loggedIn == true && loggedInName == "Michelle De Melo" && loggedInID == 1)
             {
                 return View(new ManageAppointPageModel
@@ -535,7 +580,8 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult ResetPassword(int id)
         {
-
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
             AccountInformation account = _accountRepository.GetLoggedInAccountInfo(id);
 
             return View(account);
@@ -545,7 +591,7 @@ namespace CapstoneProject.Controllers
         public IActionResult ResetPassword(AccountInformation ai, int id)
         {
 
-            Debug.WriteLine("Old Password: " + ai.StudentFirstName);
+            Debug.WriteLine("Old Password: " + ai.OldPassword);
             Debug.WriteLine("");
 
             AccountInformation loggedInUser = _accountRepository.GetAllAccounts.FirstOrDefault(r => r.Email == ai.Email);
@@ -554,7 +600,7 @@ namespace CapstoneProject.Controllers
             bool verifyPassword = false;
             if (ModelState.IsValid)
             {
-                verifyPassword = BCrypt.Net.BCrypt.Verify(ai.StudentFirstName, loggedInUser.Password);
+                verifyPassword = BCrypt.Net.BCrypt.Verify(ai.OldPassword, loggedInUser.Password);
                 if (verifyPassword == true)
                 {
                     _accountRepository.UpdateUser(ai, id);
@@ -643,6 +689,22 @@ namespace CapstoneProject.Controllers
             ViewBag.Response = "Saved";
             _appointmentRepository.UpdateAppointmentPayment(appointment.AppointmentID);
             return RedirectToAction("SendEmail");
+        }
+
+        [HttpGet]
+        public IActionResult AddChild() 
+        {
+            ViewBag.LoggedInName = loggedInName;
+            ViewBag.LoggedIn = loggedIn;
+            TempData["AccountID"] = loggedInID;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddChild(StudentInformation si)
+        {
+            _studentRepository.AddStudent(si);
+            return RedirectToAction("Account");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

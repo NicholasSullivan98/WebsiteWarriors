@@ -19,6 +19,7 @@ builder.Services.AddScoped<IAppointmentRepository, CapstoneRepository>();
 builder.Services.AddScoped<IAccountRepository, CapstoneRepository>();
 builder.Services.AddScoped<IReviewRepository, CapstoneRepository>();
 builder.Services.AddScoped<IConfirmationRepository, CapstoneRepository>();
+builder.Services.AddScoped<IStudentRepository, CapstoneRepository>();
 
 var app = builder.Build();
 
