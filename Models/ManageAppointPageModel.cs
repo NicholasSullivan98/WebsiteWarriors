@@ -7,5 +7,7 @@ namespace CapstoneProject.Models
         public IEnumerable<AppointmentInfo> Appointments { get; set; }
 
         public AppointmentInfo Appointment { get; set; }
+
+
     }
 }

@@ -104,7 +104,12 @@ namespace CapstoneProject.Controllers
                 ViewBag.Name = loggedInName;
                 ViewBag.PhoneNumber = loggedInPhoneNum;
                 ViewBag.Email = loggedInEmail;
-                return View();
+                return View(new AddAppointPageModel
+                {
+                    Accounts = _accountRepository.GetLoggedInAccountInfo(loggedInID),
+                    Students = _studentRepository.GetAllStudents,
+                    Appointments = _appointmentRepository.GetAllAppointments
+                });
             }
             else
             {
@@ -124,7 +129,12 @@ namespace CapstoneProject.Controllers
                 Debug.WriteLine("Date: " + ai.Date.ToLongDateString());
                 ViewBag.Response = "Appointment Created!";
                 _appointmentRepository.AddAppointment(ai);
-                return View();
+                return View(new AddAppointPageModel
+                {
+                    Accounts = _accountRepository.GetLoggedInAccountInfo(loggedInID),
+                    Students = _studentRepository.GetAllStudents,
+                    Appointments = _appointmentRepository.GetAllAppointments
+                });
             } 
             else 
             {

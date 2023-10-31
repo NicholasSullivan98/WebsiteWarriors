@@ -1,4 +1,4 @@
-﻿@model AppointmentInfo
+﻿@model AddAppointPageModel
 @{
     ViewData["Title"] = "Add Appointment";
     Layout = "_Layout";
@@ -8,54 +8,54 @@
 <html>
 <head>
 <style>
-* {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-input[type=text], select, textarea, [type=date], [type=time] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
+    input[type=text], select, textarea, [type=date], [type=time] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
 
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
+    label {
+      padding: 12px 12px 12px 0;
+      display: inline-block;
+    }
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
+    input[type=submit] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
 
-input[type=submit]:hover {
-    background-color: #3fe86c;
-}
+    input[type=submit]:hover {
+        background-color: #3fe86c;
+    }
 
-.pageContainer {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
+    .pageContainer {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
 
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
+    .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
 
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
+    .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
 </style>
 </head>
 <body>
@@ -85,10 +85,18 @@ input[type=submit]:hover {
                             <div asp-validation-summary="All">
                                 <div class="row">
                                     <div class="col-25">
-                                        <label asp-for="Name">Child Name</label>
+                                        <label asp-for="Appointment.Name">Child Name</label>
                                     </div>
                                     <div class="col-75">
-                                        <input type="text" asp-for="Name" name="Name" placeholder="Enter your childs name..">
+                                        <select>
+                                        @foreach (CapstoneProject.Models.Account_Models.StudentInformation student in Model.Students)
+                                        {
+                                            @if (student.ParentAccountID == Model.Accounts.AccountID)
+                                            {
+                                                <option value="@student.StudentFirstName + @student.StudentLastName">@student.StudentFirstName @student.StudentLastName</option>
+                                            }
+                                        }
+                                        </select>
                                     </div>
                                 </div>
                                 <!--
@@ -103,10 +111,10 @@ input[type=submit]:hover {
                                 -->
                                 <div class="row">
                                     <div class="col-25">
-                                        <label asp-for="CourseLevel">Course Level</label>
+                                        <label asp-for="Appointment.CourseLevel">Course Level</label>
                                     </div>
                                     <div class="col-75">
-                                        <select asp-for="CourseLevel">
+                                        <select asp-for="Appointment.CourseLevel">
                                             <option value="Beginner">Beginner</option>
                                             <option value="Intermediate">Intermediate</option>
                                             <option value="Advanced">Advanced</option>
@@ -115,27 +123,27 @@ input[type=submit]:hover {
                                 </div>
                                 <div class="row">
                                     <div class="col-25">
-                                        <label asp-for="Date">Date: </label>
+                                            <label asp-for="Appointment.Date">Date: </label>
                                     </div>
-                                    <div class="col-75"> 
-                                        <input type="text"asp-for="Date" type="date"/>
+                                    <div class="col-75">
+                                            <input type="text" asp-for="Appointment.Date" type="date" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-25">
-                                        <label asp-for="Time">Time: </label>
+                                            <label asp-for="Appointment.Time">Time: </label>
                                     </div>
                                     <div class="col-75">
-                                        <input asp-for="Time" type="time" />
+                                            <input asp-for="Appointment.Time" type="time" />
                                     </div>
                                 </div><br>
                                 <div class="row">
                                     <input type="submit" value="Book Appointment">
                                 </div>
                                 <!--<input type="text" hidden asp-for="Name" name="Name" value="@ViewBag.Name" placeholder="Enter your name..">-->
-                                <input type="text" hidden asp-for="PhoneNumber" name="phonenumber" value="@ViewBag.PhoneNumber" placeholder="Enter your Phone Num..">
-                                <input type="text" hidden asp-for="Email" name="email" value="@ViewBag.Email">
-                                <input type="text" hidden asp-for="ParentName" name="parentname" value="@ViewBag.Name">
+                                <input type="text" hidden asp-for="Appointment.PhoneNumber" name="phonenumber" value="@ViewBag.PhoneNumber" placeholder="Enter your Phone Num..">
+                                <input type="text" hidden asp-for="Appointment.Email" name="email" value="@ViewBag.Email">
+                                <input type="text" hidden asp-for="Appointment.ParentName" name="parentname" value="@ViewBag.Name">
                             </div>
                         </form>
                     </div>
