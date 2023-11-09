@@ -1,11 +1,195 @@
 ﻿@model CapstoneProject.Models.Account_Models.ManageReviewPageModel
 @{
     ViewData["Title"] = "Made By Me Studio";
+    //Layout = null;
 }
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div class="text-center"> 
+<style>
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 700px;
+      position: relative;
+      margin: auto;
+    }
 
-    <!--
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 7.5s;
+    }
+
+    @@keyframes fade {
+      from {opacity: .4} 
+      to {opacity: .9}
+    }
+
+    /* On smaller screens, decrease text size */
+    @@media only screen and (max-width: 300px) {
+      .text {font-size: 11px}
+    }
+</style>
+</head>
+<body style="background-color:#F0FFFF">
+<!--From _layout-->
+        <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="img\Logo.jpg" style="width:100%" height="870">
+                <div class="text">Caption Text</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="img\default_photo.jpg" style="width:100%" height="870">
+                <div class="text">Caption Two</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+            <img src="img\default_photo.jpg" style="width:100%" height="870">
+                <div class="text">Caption Three</div>
+            </div>
+            <!--
+            <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+            </div>
+            -->
+        </div>
+        <br>
+
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <script>
+
+            let slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                let i;
+                let slides = document.getElementsByClassName("mySlides");
+                let dots = document.getElementsByClassName("dot");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                setTimeout(showSlides, 7500); // Change image every 7.5 seconds
+            }
+        </script>
+    <!--End of _layout-->
+            <div class="text-center">
+                <div>
+                    <table width="100%" style="">
+                        <tr>
+                            <td>
+                                <h2 style="text-align: left; padding: 10px;">General Information</h2>
+                                <p style="text-align: left; padding-left: 10px;">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div><br>
+                <div>
+                    <table width="100%" style="">
+                        <tr>
+                            <td>
+                                <h3>Reviews</h3>
+                                <a asp-action="AddReview">Write a Review</a>
+                                <div style="margin: auto; width: 60%; padding: 10px;">
+                                    @foreach (CapstoneProject.Models.Account_Models.ReviewInformation review in Model.Reviews)
+                                        {   
+                                        <div style="margin: auto; width: 60%; padding: 10px;">
+                                            <table border="1" style="margin: auto;">
+                                                <tbody>
+                                        
+                                                    <tr>
+                                                        <td style="font-weight: bold">@review.ReviewTitle</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@review.Rating/5</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@review.Review</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>By @review.ReviewerName</td>
+                                                    </tr>
+                                        
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        }
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <a asp-action="AddAppointment">Add Appointment</a>
+                <a asp-action="ManageAppointments">Manage Appointments</a>
+                <a asp-action="SendEmail">Test Send Email</a>
+            </div>
+</body>
+</html>
+<!--Old Top Page-->
+<!-- 
 
     <div>
         <table style="background-color: darkgrey" width="100%">
@@ -35,74 +219,3 @@
         </table>
     </div><br>
     -->
-    <div>
-        <table border="1" width="100%">
-            <tr>
-                <td style="padding-top: 10px;">
-                    <h3>Recent Instagram Posts</h3>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;"/>
-                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
-                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
-                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
-                    <img src="img/default_photo.jpg" style="width: 200px; height: 200px; padding: 10px;" />
-                </td>
-            </tr>
-        </table>
-    </div><br>
-    <div>
-        <table border="1" width="100%" style="">
-            <tr>
-                <td>
-                    <h2 style="text-align: left; padding: 10px;">General Information</h2>
-                    <p style="text-align: left; padding-left: 10px;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </td>
-            </tr>
-        </table>
-    </div><br>
-    <div>
-        <table border="1" width="100%" style="">
-            <tr>
-                <td>
-                    <h3>Reviews</h3>
-                    <a asp-action="AddReview">Write a Review</a>
-                    <div style="margin: auto; width: 60%; padding: 10px;">
-                        @foreach (CapstoneProject.Models.Account_Models.ReviewInformation review in Model.Reviews)
-                        {
-                            <div style="margin: auto; width: 60%; padding: 10px;">
-                            <table border="1" style="margin: auto;">
-                                <tbody>
-                                    <tr>
-                                        <td style="font-weight: bold">@review.ReviewTitle</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@review.Rating/5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@review.Review</td>
-                                    </tr>
-                                    <tr>
-                                        <td>By @review.ReviewerName</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        }
-                    </div>
-                    <a asp-action="Reviews">View All Reviews</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <a asp-action="AddAppointment">Add Appointment</a>
-    <a asp-action="ManageAppointments">Manage Appointments</a>
-    <a asp-action="SendEmail">Test Send Email</a>
-</div>
