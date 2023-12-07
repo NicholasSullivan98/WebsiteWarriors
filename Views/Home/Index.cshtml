@@ -1,16 +1,14 @@
 ﻿@model CapstoneProject.Models.Account_Models.ManageReviewPageModel
 @{
     ViewData["Title"] = "Made By Me Studio";
-    //Layout = null;
 }
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
     /* Slideshow container */
     .slideshow-container {
-      max-width: 700px;
+      /*max-width: 700px;*/
       position: relative;
       margin: auto;
     }
@@ -65,183 +63,181 @@
     @@media only screen and (max-width: 300px) {
       .text {font-size: 11px}
     }
+
+    .spotifybutton{
+        display: inline-block; outline: none;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        border-radius: 500px;
+        transition-property: background-color,border-color,color,box-shadow,filter;
+        transition-duration: .3s;
+        border: 1px solid transparent;
+        letter-spacing: 2px;
+        min-width: 160px;
+        text-transform: uppercase;
+        white-space: normal;
+        font-weight: 700;
+        text-align: center;
+        padding: 17px 48px;
+        color: #fff;
+        background-color: #89CFF0;
+        height: 48px;
+    }
+    .spotifybutton:hover
+    {
+        transform: scale(1.04);
+        background-color: #0F1F40;
+        color: white;
+    }
+
+    .sectionImage {
+        background-image: url('https://static.vecteezy.com/system/resources/previews/001/313/515/non_2x/blue-textured-background-with-sewing-tools-free-photo.jpg');
+        background-size: cover; /* Adjust the background size as needed */
+        background-position: center; /* Adjust the background position as needed */
+        background-repeat: no-repeat; /* Prevent background image from repeating */
+        padding: 20px; /* Add padding to your section if necessary */
+        color: white; /* Text color */
+        text-align: center;
+        opacity: 0.9;
+    }
+
+    .review-boxes {
+        width: 300px;
+        height: 350px;
+        margin: 30px;
+        background-color: #0F1F40 !important;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 20px;
+        border: 1px solid #0F1F40;
+        padding: 30px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
 </style>
 </head>
 <body style="background-color:#F0FFFF">
-<!--From _layout-->
-        <div class="slideshow-container">
 
-            <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="img\Logo.jpg" style="width:100%" height="870">
-                <div class="text">Caption Text</div>
-            </div>
+    <div class="slideshow-container">
 
-            <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="img\default_photo.jpg" style="width:100%" height="870">
-                <div class="text">Caption Two</div>
-            </div>
-
-            <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-            <img src="img\default_photo.jpg" style="width:100%" height="870">
-                <div class="text">Caption Three</div>
-            </div>
-            <!--
-            <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-                <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-                <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
-            </div>
-            -->
-        </div>
-        <br>
-
-        <div style="text-align:center">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="img\shutterstock_147651662.jpg" style="width:100%" height="870">
+            <div class="text"></div>
         </div>
 
-        <script>
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="img\sewing-threads-2bfd36b.jpg" style="width:100%" height="870">
+            <div class="text"></div>
+        </div>
 
-            let slideIndex = 0;
-            showSlides();
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+        <img src="img\blog-banner.jpg" style="width:100%" height="870">
+            <div class="text"></div>
+        </div>
+    </div>
+    <br>
 
-            function showSlides() {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                slideIndex++;
-                if (slideIndex > slides.length) { slideIndex = 1 }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " active";
-                setTimeout(showSlides, 7500); // Change image every 7.5 seconds
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <script>
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-        </script>
-    <!--End of _layout-->
-            <div class="text-center">
-                <div>
-                    <table width="100%" style="">
-                        <tr>
-                            <td>
-                                <h2 style="text-align: left; padding: 10px;">General Information</h2>
-                                <p style="text-align: left; padding-left: 10px;">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table width="100%" style="">
-                        <tr>
-                            <td>
-                                <h2 style="text-align: right; padding: 10px;">About Us</h2>
-                                <p style="text-align: right; padding-left: 10px;">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table width="100%" style="">
-                        <tr>
-                            <td>
-                                <h2 style="text-align: left; padding: 10px;">Contact Us</h2>
-                                <p style="text-align: left; padding-left: 10px;">
-                                    Email: madebymestudio@gmail.com
-                                    Phone: 905-555-2091
-                                    Address: 123 Madebymestudio Drive
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                </div><br>
-                <div>
-                    <table width="100%" style="">
-                        <tr>
-                            <td>
-                                <h3>Reviews</h3>
-                                <a asp-action="AddReview">Write a Review</a>
-                                <div style="margin: auto; width: 60%; padding: 10px;">
-                                    @foreach (CapstoneProject.Models.Account_Models.ReviewInformation review in Model.Reviews)
-                                        {   
-                                        <div style="margin: auto; width: 60%; padding: 10px;">
-                                            <table border="1" style="margin: auto;">
-                                                <tbody>
-                                        
-                                                    <tr>
-                                                        <td style="font-weight: bold">@review.ReviewTitle</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>@review.Rating/5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>@review.Review</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>By @review.ReviewerName</td>
-                                                    </tr>
-                                        
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        }
-                                    
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 7500); // Change image every 7.5 seconds
+        }
+    </script>
+
+    <section style="padding: 20px;">
+        <h2 style="text-align: center; padding: 20px; color: black; font-size: 50px;">Made By Me Sewing Studio</h2>
+        <p style="text-align: left; padding-left: 10px; color: grey; font-style: italic; font-size: 18px;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div style="text-align: center; padding: 30px;">
+            <a asp-action="AddAppointment" style="align-content: center;">
+                <button type="button" class="btn btn-light spotifybutton">
+                    Book Now
+                </button>
+            </a>
+        </div>
+
+    </section>
+
+    <section class="sectionImage">
+        <h2 style="text-align: center; padding: 10px; padding-top: 100px; position: relative; color: white; width:70%;">About Us</h2>
+        <p style="text-align: center; padding-left: 10px; padding-bottom: 200px; color: grey; width:70%;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </section>
+
+    <div class="text-center" style="margin: auto; width: 100%; padding: 10px;">
+        <h3 style="font-size: 50px; padding: 20px;">Reviews</h3>
+
+        <div>
+            @foreach (CapstoneProject.Models.Account_Models.ReviewInformation review in Model.Reviews)
+            {
+                <div class="review-boxes" style="display:inline-block; width:auto; padding: 10px; padding-left: 30px; padding-right: 30px; padding-top: 30px; width: 28%;">
+                    <h4>@review.ReviewTitle</h4>
+                    <p>@review.Rating/5</p>
+                    <p>@review.Review</p>
+                    <p>By @review.ReviewerName</p>
                 </div>
-                <a asp-action="AddAppointment">Add Appointment</a>
-                <a asp-action="ManageAppointments">Manage Appointments</a>
-                <a asp-action="SendEmail">Test Send Email</a>
-            </div>
+            }
+        </div>
+        <div style="text-align: center; padding: 20px;">
+            <a asp-action="AddReview" style="align-content: center;">
+                <button type="button" class="btn btn-light spotifybutton">
+                    Write Review
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <section style="background-color: #0F1F40; padding: 20px; ">
+        <h2 style="text-align: center; padding: 10px; color: white; font-size: 40px;">Contact Us</h2>
+        <p style="text-align: center; padding-left: 10px; color: grey; font-size: 20px;">
+            Email:  <a href="">madebymestudio@outlook.com</a><br />
+            Phone: <a href="">905-555-3029</a><br /><br />
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92651.75066658214!2d-79.82330357346146!3d43.47380650337369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b5d28315b07cd%3A0xffcd239cf878470e!2sSheridan%20College%20Trafalgar%20Road%20Campus!5e0!3m2!1sen!2sca!4v1701835521335!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+        </p>
+    </section>
 </body>
 </html>
-<!--Old Top Page-->
-<!-- 
-
-    <div>
-        <table style="background-color: darkgrey" width="100%">
-            <tr>
-                <td style="padding: 10px;">
-                    <a href="https://www.instagram.com/madebymesewingstudio/">Instagram</a>
-                    <a href="https://www.facebook.com/">Facebook</a>
-                </td>
-                <td style="padding: 10px;">
-                    <h1>Made By Me Sewing Studio</h1>
-                </td>
-                @if (ViewBag.LoggedIn == true)
-                {
-                    <td style="padding: 10px;">
-                        <a asp-action="Account">Logged In As: @ViewBag.LoggedInName</a>
-                        <a asp-action="Logout"><button type="button">Logout</button></a>
-                    </td>
-                }
-                else
-                {
-                    <td style="padding: 10px;">
-                        <a asp-action="Login"><button type="button">Login</button></a>
-                        <a asp-action="SignUp"><button type="button">Sign Up</button></a>
-                    </td>
-                }
-            </tr>
-        </table>
-    </div><br>
-    -->

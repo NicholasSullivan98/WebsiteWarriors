@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CapstoneProject</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CapstoneProject.styles.css" asp-append-version="true" />
@@ -14,7 +14,7 @@
             background-color: white;
             color: black;
             padding: 16px;
-            font-size: 16px;
+            font-size: 18px;
             border: none;
             cursor: pointer;
         }
@@ -29,7 +29,7 @@
             position: absolute;
             right: 0;
             background-color: #f9f9f9;
-            min-width: 160px;
+            min-width: 185px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
@@ -57,42 +57,47 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/Logo_No_Text.jpg" style="width: 150px; height: 50px;" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/img/Test.png" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About Us">About Us</a>
-                        </li>-->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                            <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddAppointment">Appointments</a>
+                            <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Reviews">Reviews</a>
+                            <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="AddAppointment">Classes</a>
                         </li>
-                        <!--
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact Us">Contact Us</a>
-                        </li>-->
+                            <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="Reviews">Reviews</a>
+                        </li>
+                        @if (ViewBag.LoggedIn == true && ViewBag.LoggedInName == "Michelle De Melo" && ViewBag.LoggedInID == 1)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="ManageAppointments">Manage Classes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="SendEmail">Manage Payments</a>
+                            </li>
+                        }
                     </ul>
 
                     @if (ViewBag.LoggedIn == true)
                     {
                         <td style="padding: 10px;">
 
-                            <div class="dropdown" style="float:right;">
-                                <button class="dropbtn">@ViewBag.LoggedInName
+                            <div class="dropdown" style="float:right; font-size: 18px;">
+                                <button class="dropbtn">
+                                    @ViewBag.LoggedInName
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
@@ -100,23 +105,33 @@
                                     <a asp-action="Logout">Logout</a>
                                 </div>
                             </div>
-
-                            <!--<a asp-action="Account">@ViewBag.LoggedInName</a>-->
-                            <!--<a asp-action="Logout"><button type="button">Logout</button></a>-->
                         </td>
                     }
                     else
                     {
-                        <td style="padding: 10px;">
-                            <a asp-action="Login"><button type="button">Login</button></a>
-                            <a asp-action="SignUp"><button type="button">Sign Up</button></a>
-                        </td>
+                        <div class="ms-auto">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" style="font-size: 18px;" asp-area="" asp-controller="Home" asp-action="SignUp">Sign Up</a>
+                                </li>
+                            </ul>
+                            <!--
+                            <td style="padding: 10px;">
+                                <a asp-action="Login" style="padding-right: 5px;"><button type="button" class="btn btn-light" style="font-size: 18px;">Login</button></a>
+                                <a asp-action="SignUp"><button type="button" class="btn btn-light" style="font-size: 18px;">Sign Up</button></a>
+                            </td>
+                            -->
+                        </div>
                     }
-
+                    
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -125,7 +140,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - CapstoneProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Made By Me Sewing Studio
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

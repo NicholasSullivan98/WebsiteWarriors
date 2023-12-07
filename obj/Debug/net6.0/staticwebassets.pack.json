@@ -25,8 +25,28 @@
       "PackagePath": "staticwebassets\\img\\Logo_No_Text.jpg"
     },
     {
+      "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\img\\Test.png",
+      "PackagePath": "staticwebassets\\img\\Test.png"
+    },
+    {
+      "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\img\\Test_Logo.jpg",
+      "PackagePath": "staticwebassets\\img\\Test_Logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\img\\blog-banner.jpg",
+      "PackagePath": "staticwebassets\\img\\blog-banner.jpg"
+    },
+    {
       "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\img\\default_photo.jpg",
       "PackagePath": "staticwebassets\\img\\default_photo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\img\\sewing-threads-2bfd36b.jpg",
+      "PackagePath": "staticwebassets\\img\\sewing-threads-2bfd36b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\img\\shutterstock_147651662.jpg",
+      "PackagePath": "staticwebassets\\img\\shutterstock_147651662.jpg"
     },
     {
       "Id": "C:\\Users\\nicho\\source\\repos\\WebsiteWarriors\\wwwroot\\js\\site.js",

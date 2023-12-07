@@ -460,6 +460,7 @@ namespace CapstoneProject.Controllers
             {
                 ViewBag.LoggedIn = true;
                 ViewBag.LoggedInName = loggedInName;
+                ViewBag.LoggedInID = loggedInID;
             }
 
             return View(new ManageReviewPageModel

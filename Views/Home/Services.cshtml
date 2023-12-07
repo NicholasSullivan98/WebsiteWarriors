@@ -11,13 +11,13 @@
         }
 
         .ticket-list {
-            width: 300px;
-            height: 350px;
-            margin: 30px;
-            background-color: grey !important;
+            width: 400px;
+            height: 600px;
+            margin: 10px;
+            background-color: #0F1F40 !important;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             border-radius: 20px;
-            border: 1px solid grey;
+            border: 1px solid #0F1F40;
             padding: 30px;
             color: white;
             position: relative;
@@ -34,8 +34,8 @@
         }
 
         .ticket-icon {
-            width: 240px;
-            height: 80px;
+            width: 350px;
+            height: 280px;
             margin: auto;
         }
 
@@ -60,7 +60,7 @@
             left: 0px;
             padding: 10px 30px;
             font-weight: 800;
-            background: black;
+            background: #0F1F40;
         }
 
         .buy-ticket-main {
@@ -101,13 +101,40 @@
             border: 1px solid;
             width: 60%;
         }
+
+        .spotifybutton {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color,border-color,color,box-shadow,filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 160px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            background-color: #89CFF0;
+            height: 48px;
+        }
+
+        .spotifybutton:hover {
+            transform: scale(1.04);
+            background-color: #0F1F40;
+            color: white;
+        }
+
     </style>
 </head>
 <!-- w3-content defines a container for fixed size centered content,
 and is wrapped around the whole page content, except for the footer in this example -->
 <div class="ticket" id="ticket">
-
-    <h2>Services</h2>
 
     <div class="ticket-main">
         <div class="ticket-list ticket-pro">
@@ -116,16 +143,20 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Beginner
             </h4>
             <div class="ticket-icon">
-                <img src="\img\Logo_Cropped.jpg" />
+                <img src="/img/shutterstock_147651662.jpg" />
             </div>
             <div class="ticket-text">
                 <li>1 on 1 Lessons</li>
                 <li>Free Drink and Food</li>
                 <li>Take Home End Product</li>
             </div>
-            <a href="#book" class="w3-btn w3-red w3-margin-top w3-round" style="width: 100%;">
-                Book Now
-            </a>
+            <div style="text-align: center; padding: 30px;">
+                <a asp-action="AddAppointment" style="align-content: center;">
+                    <button type="button" class="btn btn-light spotifybutton">
+                        Book Now
+                    </button>
+                </a>
+            </div>
             <div class="ticket-price">
                 <p>$100</p>
             </div>
@@ -136,16 +167,20 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Intermediate
             </h4>
             <div class="ticket-icon">
-                <img src="\img\Logo_Cropped.jpg" />
+                <img src="/img/blog-banner.jpg" />
             </div>
             <div class="ticket-text">
                 <li>1 on 1 Lessons</li>
                 <li>Free Drink and Food</li>
                 <li>Take Home End Product</li>
             </div>
-            <a href="#book" class="w3-btn w3-red w3-margin-top w3-round" style="width: 100%;">
-                Book Now
-            </a>
+            <div style="text-align: center; padding: 30px;">
+                <a asp-action="AddAppointment" style="align-content: center;">
+                    <button type="button" class="btn btn-light spotifybutton">
+                        Book Now
+                    </button>
+                </a>
+            </div>
             <div class="ticket-price">
                 <p>$120</p>
             </div>
@@ -156,16 +191,20 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Advanced
             </h4>
             <div class="ticket-icon">
-                <img src="\img\Logo_Cropped.jpg" />
+                <img src="/img/sewing-threads-2bfd36b.jpg" />
             </div>
             <div class="ticket-text">
                 <li>1 on 1 Lessons</li>
                 <li>Free Drink and Food</li>
                 <li>Take Home End Product</li>
             </div>
-            <a href="#book" class="w3-btn w3-red w3-margin-top w3-round" style="width: 100%;">
-                Book Now
-            </a>
+            <div style="text-align: center; padding: 30px;">
+                <a asp-action="AddAppointment" style="align-content: center;">
+                    <button type="button" class="btn btn-light spotifybutton">
+                        Book Now
+                    </button>
+                </a>
+            </div>
             <div class="ticket-price">
                 <p>$140</p>
             </div>
